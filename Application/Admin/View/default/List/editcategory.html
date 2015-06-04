@@ -1,0 +1,44 @@
+<include file="Common:header" />
+<body>
+<div class="container" style="width:1480px;">
+      <div class="row">
+        <div class="span3">
+         <include file="Common:menu" />
+        </div><!--/span-->
+        <div class="span9">
+                     <ul class="breadcrumb">
+				    <li><a href="#">Home</a> <span class="divider">/</span></li>
+				    <li><a href="#">{$type|ucfirst} Management</a> <span class="divider">/</span></li>
+				    <li class="active">{$type|ucfirst} Management</li>
+				    </ul>
+				<legend><if condition="$list['id'] neq ''">Edit<else/>Add</if> {$type|ucfirst}</legend>	
+                    <form class="form-horizontal" id="myForm" method="post" action="{:U('save')}" onsubmit="myForm.submit();" enctype="multipart/form-data">
+				    <div class="control-group">
+				    <label class="control-label">Name:</label>
+				    <div class="controls">
+				    <input type="text" id="name" name="name" check="Require" warning="Catagory name cann't be empty" value="{$list.name}" >
+				    </div>
+				    </div>
+
+				    <input type="hidden" id="id" name="id" value="{$list.id}" />
+                    <input type="hidden" id="type" name="type" value="{$type}" />
+				    <div class="control-group">
+				    <div class="controls">
+				    <button type="submit" class="btn">Submit</button>
+				    </div>
+				    </div>
+				    </form>
+	          
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+    </div>
+<script src="__JS__/jquery-1.8.2.min.js"></script>
+<script src="__JS__/jquery.form.js"></script>
+<script src="__JS__/CheckForm.js"></script>
+<script src="__JS__/bootstrap-datepicker.js"></script>
+<script src="__JS__/common.js"></script>
+</body>
+</html>

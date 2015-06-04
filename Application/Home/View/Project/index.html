@@ -1,0 +1,67 @@
+<include file="Common:head"/>
+<include file="Common:header"/>
+<link rel="stylesheet" type="text/css" href="__CSS__/project.css" />
+<link rel="stylesheet" type="text/css" href="__CSS__/base.css" />
+<link  rel="stylesheet" type="text/css" href="__CSS__/lightbox.css"/>
+<script src="__JS__/lightbox.min.js"></script>
+<!-- Contents -->
+<div class="contents">
+    <div class="sidebar-nav">
+        <div class="section">Services</div>
+        <ul>
+            <volist name="catalist" id="vo">
+            <li class="sidebar-nav-li"><a href="{:U('index',array('cid'=>$vo['id']))}">{$vo.name}</a></li>
+            </volist>
+        </ul>
+    </div>
+    <div class="project-preview">
+        <if condition="$pid eq ''">
+        <ul>
+            <volist name="list" id="vo" mod="3"><eq name="mod" value="2">
+            <li class='li-eol li-preview'>
+                <a href="{:U('photos',array('pid'=>$vo['id']))}"><div class="img-frame"><div><img class="preview-img" src="{:SITE_PATH}{$vo.preview}"></div></div></img></a>
+                <div>{$vo.title}</div>
+                <div>{$vo.description}</div>
+            </li>
+            <div style="clear:both;"></div>
+            <else/>
+            <li class='li-not-eol li-preview'>
+                <a href="{:U('photos',array('pid'=>$vo['id']))}"><div class="img-frame"><div><img class="preview-img" src="{:SITE_PATH}{$vo.preview}"></div></div></img></a>
+                <div>{$vo.title}</div>
+                <div>{$vo.description}</div>
+            </li>
+            </eq></volist>
+        </ul>
+        <else/>
+        <a href="{:SITE_PATH}Uploads/{$photolist[0]['pic']|substr=1}" data-lightbox="photos" data-title="Project Photos"><div class="img-frame img-big-frame"><div><img src="{:SITE_PATH}{$preview}"></img></div></div></a>
+        <ul>
+            <volist name="photolist" id="vo" mod="3" offset="1"><eq name="mod" value="2">
+            <li class='li-eol li-photo'>
+                <a href="{:SITE_PATH}Uploads/{$vo.pic|substr=1}" data-lightbox="photos" data-title="Project Photos"><div class="img-frame"><div><img class="projectphoto-img" src="{:SITE_PATH}Uploads/{$vo.pic|substr=1}"></img></div></div></a>
+            </li>
+            <div style="clear:both;"></div>
+            <else/>
+            <li class='li-not-eol li-photo'>
+                <a href="{:SITE_PATH}Uploads/{$vo.pic|substr=1}" data-lightbox="photos" data-title="Project Photos"><div class="img-frame"><div><img class="projectphoto-img" src="{:SITE_PATH}Uploads/{$vo.pic|substr=1}"></img></div></div></a>
+            </li>
+            </eq></volist>
+        </ul>
+        </if>
+        <div style="clear:both;"></div>
+        <div class="pagination pagination-right">
+            <ul>
+                {$show}
+            </ul>
+        </div>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+<include file="Common:footer"/>
+<script>
+$(document).ready(function (){
+//$(".preview-img").each(function(){var img=new Image();img.src=$(this).attr('src');var w,h;=img.width;var h=img.height;alert(w+','+h);if(w>185) {h=h*185/w;w=185;};$(this).css('width',w+'px');$(this).css('height',h+'px');});
+function clear_menuc(){$("#menu-home-div").css('background-color','#ffffff');$("#menu-whoweare-div").css('background-color','#ffffff');$("#menu-whatwedo-div").css('background-color','#ffffff');$("#menu-smartchoice-div").css('background-color','#ffffff');$("#menu-portfolio-div").css('background-color','#ffffff');$("#menu-clientlist-div").css('background-color','#ffffff');$("#menu-contactus-div").css('background-color','#ffffff');$("#menu-home-a").css('color','#646464');$("#menu-whoweare-a").css('color','#646464');$("#menu-whatwedo-a").css('color','#646464');$("#menu-smartchoice-a").css('color','#646464');$("#menu-portfolio-a").css('color','#646464');$("#menu-clientlist-a").css('color','#646464');$("#menu-contactus-a").css('color','#646464');};
+(function init(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');$("#menu-home-div").mouseover(function(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');});$("#menu-whoweare-div").mouseover(function(){clear_menuc();$("#menu-whoweare-div").css('background-color','#faa815');$("#menu-whoweare-a").css('color','#f0f0f0');});$("#menu-whatwedo-div").mouseover(function(){clear_menuc();$("#menu-whatwedo-div").css('background-color','#faa815');$("#menu-whatwedo-a").css('color','#f0f0f0');});$("#menu-smartchoice-div").mouseover(function(){clear_menuc();$("#menu-smartchoice-div").css('background-color','#faa815');$("#menu-smartchoice-a").css('color','#f0f0f0');});$("#menu-portfolio-div").mouseover(function(){clear_menuc();$("#menu-portfolio-div").css('background-color','#faa815');$("#menu-portfolio-a").css('color','#f0f0f0');});$("#menu-clientlist-div").mouseover(function(){clear_menuc();$("#menu-clientlist-div").css('background-color','#faa815');$("#menu-clientlist-a").css('color','#f0f0f0');});$("#menu-contactus-div").mouseover(function(){clear_menuc();$("#menu-contactus-div").css('background-color','#faa815');$("#menu-contactus-a").css('color','#f0f0f0');});})();});
+</script>
+</body>
+</html>

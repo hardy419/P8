@@ -1,0 +1,37 @@
+<div class="well sidebar-nav">
+            
+            <ul class="nav nav-list">
+            <p>Admin：<?php echo $_SESSION['loginUserName'];?>&nbsp;&nbsp;<a href="javascript:void(0);" id="logoutBtn">Logout</a></p>
+              <li class="nav-header">Banner Photos Management</li>
+              <li <if condition="$type eq 'banner'">class="active"</if>><a href="{:U('banner/index',array('type'=>'banner'))}">Banner Photos Management</a></li>
+              <li class="nav-header">News Management</li>
+              <li <if condition="$type eq 'newscategory'">class="active"</if>><a href="{:U('List/category',array('type'=>'newscategory'))}">News Category Management</a></li>
+              <li <if condition="$type eq 'news'">class="active"</if>><a href="{:U('List/index',array('type'=>'news'))}">News Management</a></li>
+              <li class="nav-header">Programmes Management</li>
+              <li  <if condition="$type eq 'programmes'">class="active"</if>><a href="{:U('List/index',array('type'=>'programmes'))}">Programmes Management</a></li>
+              <li class="nav-header">MOD Tutors Management</li>
+              <li <if condition="$type eq 'tutors'">class="active"</if>><a href="{:U('List/index',array('type'=>'tutors'))}">MOD Tutors Management</a></li>
+              <li class="nav-header">Student Makeup Gallery</li>
+              <li  <if condition="$type eq 'student'">class="active"</if>><a href="{:U('List/photos',array('type'=>'studentphotos','pid'=>1))}">Student Makeup Gallery</a></li>
+              <li class="nav-header">Student Management</li>
+              <li  <if condition="CONTROLLER_NAME eq 'Member'">class="active"</if>><a href="{:U('member/index')}">Student Management</a></li>
+              <li class="nav-header">Email Management</li>
+              <li  <if condition="CONTROLLER_NAME eq 'Email'">class="active"</if>><a href="{:U('email/index')}">Email Management</a></li>
+            </ul>
+</div><!--/.well -->
+<script src="__JS__/jquery-1.8.2.min.js"></script>
+<script>
+jQuery(function(){
+   jQuery("#logoutBtn").click(function(){
+		$.get('{:U('Common/logout')}',function(responseText){
+		    var info=responseText['info'];
+	        var status=responseText['status'];
+	        var url=responseText['url'];
+	        if(status==1){
+	        alert(info)
+	        window.location.href=url;
+	        } else alert(info);
+	  });
+   });
+});
+</script>

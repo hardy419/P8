@@ -1,0 +1,65 @@
+<include file="Common:header" />
+<body>
+<div class="container" style="width:1480px;">
+      <div class="row">
+        <div class="span3">
+         <include file="Common:menu" />
+        </div><!--/span-->
+        <div class="span9">
+                     <ul class="breadcrumb">
+				    <li><a href="#">Home</a> <span class="divider">/</span></li>
+				    <li><a href="#">{$type|ucfirst} Management</a> <span class="divider">/</span></li>
+				    <li class="active">{$type|ucfirst} Management</li>
+				    </ul>
+				<legend><if condition="$list['id'] neq ''">Edit<else/>Add</if> {$type|ucfirst}</legend>	
+                    <form class="form-horizontal" id="myForm" method="post" action="{:U('save')}" onsubmit="editor.sync();myForm.submit();" enctype="multipart/form-data">
+				    <div class="control-group">
+				    <label class="control-label">Title:</label>
+				    <div class="controls">
+				    <input type="text" id="title" name="title" check="Require" warning="Title cann't be empty" value="{$list.title}" >
+				    </div>
+				    </div>
+
+				    <div class="control-group">
+				    <label class="control-label">Content:</label>
+				    <div class="controls">
+				     <textarea id="content" name="content" style="width:1100px;height:500px;">{$list.content}</textarea>
+				    </div>
+				    </div>
+				    <div class="control-group">
+				    <label class="control-label">Status:</label>
+				    <div class="controls">
+				      <input type="radio" id="status1" name="status" value="1" <if condition="$list['status'] neq '0'">checked="checked"</if> /><span class="help-inline">Yes</span> <input type="radio" id="status1" name="status" value="0"  <if condition="$list['status'] eq '0'">checked="checked"</if>/><span class="help-inline">No</span>
+				    </div>
+				    </div>
+				    <input type="hidden" id="id" name="id" value="{$list.id}" />
+                    <input type="hidden" id="type" name="type" value="{$type}" />
+				    <div class="control-group">
+				    <div class="controls">
+				    <button type="submit" class="btn">Submit</button>
+				    </div>
+				    </div>
+				    </form>
+	          
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+    </div>
+<script src="__JS__/kindeditor/kindeditor.js"></script>
+<script src="__JS__/jquery-1.8.2.min.js"></script>
+<script src="__JS__/jquery.form.js"></script>
+<script src="__JS__/CheckForm.js"></script>
+<script src="__JS__/bootstrap-datepicker.js"></script>
+<script src="__JS__/common.js"></script>
+<script>
+KindEditor.ready(function(K) {
+	editor1 = K.create('#content', {
+					allowFileManager : true,
+					urlType : 'domain'
+	});
+});
+</script>
+</body>
+</html>

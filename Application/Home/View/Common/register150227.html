@@ -1,0 +1,107 @@
+<include file="Common:head"/>
+<body class="register">
+<!-- Header starts -->
+<include file="Common:header"/>
+<!-- Header ends -->
+
+<div id="mainWrapper"> 
+	<div id="mainContainer">
+		<div id="contentContainer">
+			<div id="sectionContainer">
+				<!-- contact us Content starts -->
+				<div class="registerContainer clearfix">
+					<div class="Col">
+						<h2>Registration</h2>
+						<form id="regForm" name="regForm" class="regForm">
+							<dl>
+								<dt>Name :</dt>
+								<dd><input type="text" name="name" id="name" class="{required:true,messages:{required:'Please input yourname'}}" /></dd>
+								<dt>Password:</dt>
+								<dd><input type="password" name="password" id="password" class="{required:true,minlength:5,messages:{required:'Please input password'}}" /></dd>
+								<dt>Comfirm Password:</dt>
+								<dd><input type="password" name="compwd" id="compwd" class="{required:true,minlength:5,equalTo:'#password',messages:{required:'the comfirm password should equalTo the password'}}"/></dd>
+								<dt>Contact NO.:</dt>
+								<dd><input type="text" name="telephone" id="telephone" class="digits required" /></dd>
+								<dt>Email :</dt>
+								<dd><input type="text" name="email" id="email" class="email required" /></textarea></dd>
+							</dl>
+							<div class="formBtns">
+								<a href="javascript:;" class="btnSend">Send</a>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- contact us Content ends -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Footer starts -->
+<include file="Common:footer"/>
+<!-- Footer ends -->
+<script type="text/javascript" language="javascript">
+	validateRegForm2('regForm');
+	function validateRegForm2(myform)
+	{
+		$('form.'+myform).validate({
+			success: function(label) {
+				label.addClass("valid");
+			},
+			showErrors: function() {
+				this.defaultShowErrors();
+			},
+			submitHandler: function() {
+				var data;
+				data = {
+					'account': d.getElementById("name").value, 
+					'phone':  d.getElementById("telephone").value,
+					'email':  d.getElementById("email").value,
+					'password':  d.getElementById("password").value
+				};
+				$.ajax({
+					url:"{:U('saveReg')}",
+					type: "POST",
+					data: data, 
+					async: false,
+					success: function(data)
+					{
+						var status=data['status'];
+						if (status==1){
+							$.colorbox({
+								html:'<div class="freeClassTrial"><p class="thank">Thank You!<br />We will get back to you as soon as possible.</p></div>',
+								width:480,
+								opacity:0.8,
+								transition:'fade',
+								onComplete:function(){
+									setTimeout(function(){
+										$.colorbox.close();
+										window.location.href=data['url'];
+									},3000);
+								}
+							});
+						}else{
+							$.colorbox({
+								html:'<div class="freeClassTrial"><p class="thank">'+data['info']+'</p></div>',
+								width:480,
+								opacity:0.8,
+								transition:'fade',
+								onComplete:function(){
+									setTimeout(function(){
+										$.colorbox.close();
+									},3000);
+								}
+							});
+						}
+					}
+				});
+			}
+		});
+		
+		$('form.'+myform+' .btnSend').click(function(){
+			$('.'+myform).submit();
+		});
+	}
+</script>
+</body>
+</html> 

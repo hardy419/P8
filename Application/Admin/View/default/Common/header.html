@@ -1,0 +1,31 @@
+<!DOCTYPE html>
+<html>
+<head>
+<title>WebSite Admin</title>
+<meta charset="utf-8" />
+<meta http-equiv="X-UA-Compatible" content="IE=edge" />
+<meta name="viewport" content="width=device-width, initial-scale=1.0" />
+<link href="__CSS__/bootstrap.min.css" type="text/css" rel="stylesheet" />
+<link href="__CSS__/adminbase.css" type="text/css" rel="stylesheet" />
+
+</head>
+<body>
+<script src="__JS__/jquery-1.8.2.min.js"></script>  
+<script src="__JS__/bootstrap.min.js"></script>
+ 
+<script>
+$(function(){
+	  var info="{$Think.get.info}";
+	  var status="{$Think.get.status}";
+	  var className='';
+	  if(status==1) className='alert-block';
+	  else className='alert-error';
+	  if(info!=''&&status!=''){
+		  var html='<div id="msg-alert" class="alert '+className+'"><button type="button" class="close" data-dismiss="alert">&times;</button><p>'+info+'</p></div>';
+		  jQuery('.breadcrumb').after(html);
+		  setTimeout(function(){
+			  $("#msg-alert").fadeOut();
+		  },3000);
+	  }
+});
+</script>

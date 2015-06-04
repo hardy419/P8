@@ -1,0 +1,58 @@
+<div id="header">
+	<div class="topContainer">
+		<div class="top">
+			<a href="{:U('Index/index')}" id="logo">MOD MAKEUP ACADEMY</a>
+			<div class="memberbox">
+			  <if condition="$_SESSION['mloginUserName'] neq ''">
+			  Welcome:<a href="{:U('Member/index')}" >&nbsp;{:$_SESSION['mloginUserName']}</a>&nbsp;&nbsp;<a href="javascript:void(0);" class="logout">Logout</a>
+			  <else/>
+			    <a href="{:U('Common/login')}" >Login</a>
+			  </if> 
+			</div>
+			<div class="tagline">We teach by heart.</div>
+		</div>
+	</div>
+	<div class="mainNavContainer">
+		<!-- Main Nav starts -->
+		<div id="mainNav">
+			<div class="home"><a href="{:U('Index/index')}">Home</a></div>
+			<div class="news"><a href="{:U('News/index')}">News</a></div>
+			<div class="about"><a href="{:U('Common/about')}">About MOD</a></div>
+			<div class="gallery"><a href="{:U('Student/index')}">Studen Gallery</a></div>
+			<div class="programmes">
+				<a href="{:U('Programmes/index')}#vertitem1">Programmes</a>
+				<ul>
+					<volist name="menu['courses']" id="vo">
+					<li><a href="{:U('Programmes/index')}#vertitem{$i}" alt="{$vo.title}">{$vo.title}</a></li>
+					</volist>
+				</ul>
+			</div>
+			<div class="tutors">
+				<a href="{:U('Tutors/index')}#vertitem1">MOD Tutors</a>
+				<ul>
+					<volist name="menu['tutors']" id="vo">
+					<li><a href="{:U('Tutors/index')}#vertitem{$i}" alt="{$vo.title}">{$vo.title}</a></li>
+					</volist>
+				</ul>
+			</div>
+			<!--<div class="artists">
+				<a href="artists.php#vertitem1">MOD Artists</a>
+				<ul>
+					<li><a href="artists.php#vertitem1"><img src="Public/images//nav/artists_miffy.png" alt="Miffy Ng" /></a></li>
+					<li><a href="artists.php#vertitem2"><img src="Public/images//nav/artists_sammy.png" alt="Sammy Lam" /></a></li>
+					<li><a href="artists.php#vertitem3"><img src="Public/images//nav/artists_winnie.png" alt="Winnie Huang" /></a></li>
+				</ul>
+			</div>-->
+			<div class="bridal"><a href="{:U('Bridal/index')}">MOD Bridal</a>
+				<ul>
+					<li><a href="{:U('Bridal/index')}"><img src="Public/images/nav/bridal_about.png" alt="About MOD Bridal" /></a></li>
+					<!--<li><a href="bridal_price.php"><img src="Public/images//nav/bridal_price.png" alt="Price List" /></a></li>-->
+					<li><a href="{:U('Bridal/gallery')}"><img src="Public/images/nav/bridal_gallery.png" alt="Bridal Gallery" /></a></li>
+				</ul>
+			</div>
+			<div class="contact"><a href="{:U('Contact/index')}">Contact Us</a></div>
+			<div class="fbLink"><a href="http://on.fb.me/SXKoeS" target="_blank" class="fb">facebook</a></div>
+		</div>
+		<!-- Main Nav ends -->
+	</div>
+</div>

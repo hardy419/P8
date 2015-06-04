@@ -1,0 +1,78 @@
+<include file="Common:header" />
+<body>
+<div class="container">
+      <div class="row">
+        <div class="span3">
+         <include file="Common:menu" />
+        </div><!--/span-->
+        <div class="span9">
+                    <ul class="breadcrumb">
+				    <li><a href="#">Home</a> <span class="divider">/</span></li>
+				    <li><a href="#">{$type|ucfirst} Management</a> <span class="divider">/</span></li>
+				    <li class="active">{$type|ucfirst} Management</li>
+				    </ul>
+				    <if condition="$type neq 'page'">
+                    <p>
+					 <form >
+					       <div class="input-append">
+						    <a class="btn" href="{:U('edit',array('type'=>$type,'pid'=>$pid))}">Add {$type|ucfirst}</a>
+						    </div>
+					 </form>
+					</p>
+                    </if>
+				<legend>{$type|ucfirst} Management</legend>	
+                <table class="table table-striped">
+	              <thead>
+	                <tr>
+	                    <th><if condition="$type neq 'catagory'">Title<else/>Name</if></th>
+	                    <th>Action</th>
+	                </tr>
+	              </thead>
+	              <tbody>
+	               <volist name="list" id="vo">
+	                <tr <if condition="$current eq $vo['id']">class="warning"</if>>
+	                    <td><if condition="$type neq 'catagory'">{$vo.title}<else/>{$vo.name}</if></td>
+	                    <td>
+	                    <a href="{:U('edit',array('id'=>$vo['id'],'type'=>$type,'pid'=>$pid))}">Edit</a>&nbsp;&nbsp;
+                        <if condition="$type neq 'page'"><a href="javascript:void(0);" onclick="del('{:U('del',array('id'=>$vo['id'],'type'=>$type))}');">Delete</a></if></td>
+	                </tr>
+	                </volist>
+	              </tbody>
+	            </table>
+	            
+	            <div class="pagination pagination-right">
+	              <ul>
+	                {$show}
+	             </ul>
+	            </div>
+	          
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+      <footer>
+        <p>&copy; Company 2014</p>
+      </footer>
+
+    </div>
+<script src="__JS__/jquery-1.8.2.min.js"></script>    
+<script>
+  function del(url){
+	  if(url=='') return false;
+      if(window.confirm('Are you sure to delete this record?')){	  
+		  $.get(url,function(responseText){
+			    var info=responseText['info'];
+		        var status=responseText['status'];
+		        var url=responseText['url'];
+		        if(status==1){
+		        alert(info)
+		        window.location.href=url;
+		        } else alert(info);
+		  });
+		  return true;
+	  }
+  }
+</script>   
+</body>
+</html>

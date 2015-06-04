@@ -1,0 +1,147 @@
+<include file="Common:head"/>
+<include file="Common:header_home"/>
+<!-- banner -->
+<div class="banner">
+	<ul class="banner_u" style="left:0;position: relative;">
+		<volist name='refurl' id='vo'>
+		<li><img width="{:BANNER_WIDTH}" height="{:BANNER_HEIGHT_MAIN}" src="{:SITE_PATH}{$vo}" /></li>
+		</volist>
+	</ul>
+</div>
+<div class="banner_btn">
+	<ul>
+		<li><img s='1' src="{:SITE_PATH}Public/Img/GC/img_s.png" /></li>
+		<volist name='refurl' id='vo' offset='1'>
+		<li><img s='{$i+1}' src="{:SITE_PATH}Public/Img/GC/img_e.png" /></li>
+		</volist>
+	</ul>
+</div>
+<!-- Contents -->
+<div class="contents">
+    <!-- Services Section -->
+    <div id="section-services">
+        <p><b class="section">&nbsp;&nbsp;Portfolio</b></p>
+        <div class="scrollable">
+            <a id="left_arrow-a" href="javascript:change_svc_offset(0)"><img src="{:SITE_PATH}Public/Img/GC/left_arrow.png" /></a>
+            <ul id="services-pic">
+                <li>
+                  <div>
+                    <a href="{:U('Project/photos',array('pid'=>$service[0]['pid']))}"><div class="img-frame"><div><img src="{:SITE_PATH}{$service[0]['preview']}" /></div></div></a>
+                    <p class="yellow-title">{$service[0]['category']}</p>
+                    <p class="title-desc"><i>{$service[0]['title']}</i></p>
+                    <p>{$service[0]['description']}</p>
+                  </div>
+                  <a href="{:U('Project/photos',array('pid'=>$service[0]['pid']))}"><img src="{:SITE_PATH}Public/Img/GC/more.png" /></a>
+                </li>
+                <li>
+                  <div>
+                    <a href="{:U('Project/photos',array('pid'=>$service[1]['pid']))}"><div class="img-frame"><div><img src="{:SITE_PATH}{$service[1]['preview']}" /></div></div></a>
+                    <p class="yellow-title">{$service[1]['category']}</p>
+                    <p class="title-desc"><i>{$service[1]['title']}</i></p>
+                    <p>{$service[1]['description']}</p>
+                  </div>
+                  <a href="{:U('Project/photos',array('pid'=>$service[1]['pid']))}"><img src="{:SITE_PATH}Public/Img/GC/more.png" /></a>
+                </li>
+                <li>
+                  <div>
+                    <a href="{:U('Project/photos',array('pid'=>$service[2]['pid']))}"><div class="img-frame"><div><img src="{:SITE_PATH}{$service[2]['preview']}" /></div></div></a>
+                    <p class="yellow-title">{$service[2]['category']}</p>
+                    <p class="title-desc"><i>{$service[2]['title']}</i></p>
+                    <p>{$service[2]['description']}</p>
+                  </div>
+                  <a href="{:U('Project/photos',array('pid'=>$service[2]['pid']))}"><img src="{:SITE_PATH}Public/Img/GC/more.png" /></a>
+                </li>
+            </ul>
+            <a id="right_arrow-a" href="javascript:change_svc_offset(1)"><img src="{:SITE_PATH}Public/Img/GC/right_arrow.png" /></a>
+        </div>
+    </div>
+    <!-- About GC Section -->
+    <div id="section-about_gc">
+        <p id="aboutgc-section-tag"><b class="section">&nbsp;&nbsp;About GC</b></p>
+        <p id="aboutgc-section-firstpara">Established in 2014. GC Communications "GC", is a full-service event management and media marketing company based in Hong Kong.</p>
+        <p id="aboutgc-section-secondpara">GC offers both traditional PR &amp; marketing services like event management, media awareness, brand building, and joint promotions, and online marketing service like Facebook optimization, community management, and iPhone/iPad/Facebook applications, online topics seeding and online buzz words tracking.</p>
+        <a href=""><img src="{:SITE_PATH}Public/Img/GC/more.png" /></a>
+    </div>
+    <!-- News & Event Section -->
+    <div id="section-news_event">
+        <p><b class="section">&nbsp;&nbsp;Contact Us</b></p>
+        <div id="info-div">
+            <div class="info-text-div">
+                <table>
+                    <tr><td>Tel  :&nbsp;&nbsp;</td>  <td>2898 8283</td></tr>
+                    <tr><td>Fax  :&nbsp;&nbsp;</td>  <td>3914 6999</td></tr>
+                    <tr><td>Email  :&nbsp;&nbsp;</td>  <td>info@gccomhk.com</td></tr>
+                    <tr><td>Address  :&nbsp;&nbsp;</td>  <td>Rm B10, 1/F, King Yip Factory Bldg, 59 King Yip St., Kwun Tong, Hong Kong</td></tr>
+                </table>
+            </div>
+        </div>
+    </div>
+    <div style="clear:both"></div>
+</div>
+<include file="Common:footer"/>
+<script src="{:SITE_PATH}Public/Js/jquery-1.8.2.min.js"></script>
+<script src="{:SITE_PATH}Public/Js/slick.js"></script>
+<script>
+   jQuery(function(){
+	   $('.bannerlist').slick({
+	        dots: true,
+	        autoplay:false,
+	        fade:true,
+	        arrows:false,
+	        onInit:function(){
+	        	jQuery('.bannerlist').removeAttr('style');
+	        }
+	    });
+   });
+   
+</script>
+<script>
+  var svc_offset=0;
+  var svc_pid=[{$service[0]['pid']}<volist name='service' id='vo' offset='1'>,{$vo.pid}</volist>];
+  var svc_image=["{$service[0]['preview']}"<volist name='service' id='vo' offset='1'>,"{$vo.preview}"</volist>];
+  var svc_cname=["{$service[0]['category']}"<volist name='service' id='vo' offset='1'>,"{$vo.category}"</volist>];
+  var svc_title=["{$service[0]['title']}"<volist name='service' id='vo' offset='1'>,"{$vo.title}"</volist>];
+  var svc_desc=["{$service[0]['description']}"<volist name='service' id='vo' offset='1'>,"{$vo.description}"</volist>];
+  function svc_refresh(){
+    $("#services-pic>li:first-child>div>a").attr("href","{:U('Project/photos')}/pid/" + svc_pid[svc_offset]);
+    $("#services-pic>li:first-child>div>a img").attr("src","{:SITE_PATH}"+svc_image[svc_offset]);
+    $("#services-pic>li:first-child>div>a+p").html(svc_cname[svc_offset]);
+    $("#services-pic>li:first-child>div>a+p+p>i").html(svc_title[svc_offset]);
+    $("#services-pic>li:first-child>div>a+p+p+p").html(svc_desc[svc_offset]);
+    $("#services-pic>li:first-child>a").attr("href","{:U('Project/photos')}/pid/" + svc_pid[svc_offset]);
+    $("#services-pic>li:first-child+li>div>a").attr("href","{:U('Project/photos')}/pid/" + svc_pid[svc_offset+1]);
+    $("#services-pic>li:first-child+li>div>a img").attr("src","{:SITE_PATH}"+svc_image[svc_offset+1]);
+    $("#services-pic>li:first-child+li>div>a+p").html(svc_cname[svc_offset+1]);
+    $("#services-pic>li:first-child+li>div>a+p+p>i").html(svc_title[svc_offset+1]);
+    $("#services-pic>li:first-child+li>div>a+p+p+p").html(svc_desc[svc_offset+1]);
+    $("#services-pic>li:first-child+li>a").attr("href","{:U('Project/photos')}/pid/" + svc_pid[svc_offset+1]);
+    $("#services-pic>li:first-child+li+li>div>a").attr("href","{:U('Project/photos')}/pid/" + svc_pid[svc_offset+2]);
+    $("#services-pic>li:first-child+li+li>div>a img").attr("src","{:SITE_PATH}"+svc_image[svc_offset+2]);
+    $("#services-pic>li:first-child+li+li>div>a+p").html(svc_cname[svc_offset+2]);
+    $("#services-pic>li:first-child+li+li>div>a+p+p>i").html(svc_title[svc_offset+2]);
+    $("#services-pic>li:first-child+li+li>div>a+p+p+p").html(svc_desc[svc_offset+2]);
+    $("#services-pic>li:first-child+li+li>a").attr("href","{:U('Project/photos')}/pid/" + svc_pid[svc_offset+2]);
+  }
+  function change_svc_offset(dir){
+    if(0==dir && svc_offset>0){
+      svc_offset--;
+      svc_refresh();
+    }
+    else if(1==dir && svc_offset<svc_pid.length-3){
+      svc_offset++;
+      svc_refresh();
+    }
+  }
+</script>
+<script>
+var banner_width={:BANNER_WIDTH};
+var img_s_path="{:SITE_PATH}Public/Img/GC/img_s.png";
+var img_e_path="{:SITE_PATH}Public/Img/GC/img_e.png";
+$(document).ready(function (){linum=$(".banner_u li").length;w=banner_width*linum;$(".banner_u").css("width",w+"px");linums=$(".banner_btn li").length;w=20*linums;$(".banner_btn ul").css("width",w+"px");setTimeout(autopaly,5E3);$(".banner_btn li img").click(function(){var a=$(this).attr("s");cliplay(a)});
+function autopaly(){linum=$(".banner_u li").length;w=banner_width*linum;1<$(".banner_u li").length&&(ml=parseInt($(".banner_u").css("left")),0>=ml&&0==ml%banner_width&&(ml==-1*(w-banner_width)?$(".banner_u").animate({left:"0px"},"slow"):$(".banner_u").animate({left:ml-banner_width+"px"},"slow"),playbtn((ml-banner_width*2)/-banner_width>linum?"1":(ml-banner_width*2)/-banner_width)));setTimeout(autopaly,5E3)}function cliplay(a){$(".banner_u").animate({left:-banner_width*(a-1)+"px"},"slow");playbtn(a)}
+function playbtn(a){var b=$(".banner_btn li");$(b).each(function(b){$(this).find("img").attr("s")==a?$(this).find("img").attr("src",img_s_path):$(this).find("img").attr("src",img_e_path)})};
+function clear_menuc(){$("#menu-home-div").css('background-color','#ffffff');$("#menu-whoweare-div").css('background-color','#ffffff');$("#menu-whatwedo-div").css('background-color','#ffffff');$("#menu-smartchoice-div").css('background-color','#ffffff');$("#menu-portfolio-div").css('background-color','#ffffff');$("#menu-clientlist-div").css('background-color','#ffffff');$("#menu-contactus-div").css('background-color','#ffffff');$("#menu-home-a").css('color','#646464');$("#menu-whoweare-a").css('color','#646464');$("#menu-whatwedo-a").css('color','#646464');$("#menu-smartchoice-a").css('color','#646464');$("#menu-portfolio-a").css('color','#646464');$("#menu-clientlist-a").css('color','#646464');$("#menu-contactus-a").css('color','#646464');};
+(function init(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');$("#menu-home-div").mouseover(function(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');});$("#menu-whoweare-div").mouseover(function(){clear_menuc();$("#menu-whoweare-div").css('background-color','#faa815');$("#menu-whoweare-a").css('color','#f0f0f0');});$("#menu-whatwedo-div").mouseover(function(){clear_menuc();$("#menu-whatwedo-div").css('background-color','#faa815');$("#menu-whatwedo-a").css('color','#f0f0f0');});$("#menu-smartchoice-div").mouseover(function(){clear_menuc();$("#menu-smartchoice-div").css('background-color','#faa815');$("#menu-smartchoice-a").css('color','#f0f0f0');});$("#menu-portfolio-div").mouseover(function(){clear_menuc();$("#menu-portfolio-div").css('background-color','#faa815');$("#menu-portfolio-a").css('color','#f0f0f0');});$("#menu-clientlist-div").mouseover(function(){clear_menuc();$("#menu-clientlist-div").css('background-color','#faa815');$("#menu-clientlist-a").css('color','#f0f0f0');});$("#menu-contactus-div").mouseover(function(){clear_menuc();$("#menu-contactus-div").css('background-color','#faa815');$("#menu-contactus-a").css('color','#f0f0f0');});})();});
+</script>
+</body>
+</html>

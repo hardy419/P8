@@ -1,0 +1,338 @@
+<include file="Common:header" />
+<body>
+<style>
+.form-horizontal label{font-size:12px;}
+.form-horizontal .control-label{width:50px;}
+.form-horizontal .controls{margin-left:60px;}
+.form-horizontal .control-group{margin-bottom:10px;}
+ input[type="file"]{width:140px;}
+ input[type="text"]{border-radius:0px;height:20px;line-height:20px;}
+ .error{color:red;}
+ .row-fluid .span3{height:220px;overflow:hidden;}
+</style>
+<div class="container">
+      <div class="row">
+        <div class="span3">
+         <include file="Common:menu" />
+        </div><!--/span-->
+        <div class="span9">
+                    <ul class="breadcrumb">
+				    <li><a href="#">Home</a> <span class="divider">/</span></li>
+				    <li><a href="#">{$type|ucfirst} Management</a> <span class="divider">/</span></li>
+				    <li class="active">{$type|ucfirst} Management</li>
+				    </ul>
+				<legend>{$type|ucfirst} Management</legend>	
+                <div class="row-fluid">
+                   <div class="span8">
+                            <ul class="thumbnails">
+                              <volist name="list" id="vo">
+                                <if condition="$i%4 eq 1">
+                                 <li class="span3" style="margin-left:0px;">
+                                <else/>
+							    <li class="span3">
+							    </if>
+							    <div class="thumbnail">
+							     
+							    <img src="{:SITE_PATH}Uploads/{$vo.pic|substr=1}" style="width:100%;max-height:120px;" >
+							    <p>{$vo.title}</p>
+							    <p><a class="btn" href="javascript:void(0);" onclick="edit('{$vo.id}');">Edit</a> <a class="btn" id="delete" href="#" onclick="del('{:U('del',array('type'=>$type,'id'=>$vo['id']))}')">Delete</a></p>
+							    </div>
+							    </li>
+							 </volist>
+						    </ul>
+						     <div class="pagination pagination-right">
+					              <ul>
+					                {$show}
+					             </ul>
+					         </div>
+                   </div>
+                   <div class="span4">
+                   
+					<legend>Upload images:</legend>
+                            <form id="myForm" class="form-horizontal"  method="post" action="{:U('savePhotos')}">
+                               <div class="control-group">
+									<label class="control-label">Sort</label>
+									<div class="controls">
+									<input type="text" id="sid1" name="sid[]" class="input-small" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Title</label>
+									<div class="controls">
+									<input type="text" id="title1" name="title[]" class="input-small"  />
+									</div>
+								</div>
+								<if condition="$type eq 'studentphotos'">
+								<div class="control-group">
+									<label class="control-label">Name:</label>
+									<div class="controls">
+									<input type="text" id="name1" name="name[]" class="input-small"  />
+									</div>
+								</div>
+								</if>
+							    <div class=" control-group">
+					             <label class="control-label">File:</label>
+					                   <div class="controls">
+					                    <input type="text" id="pic1" name="pic[]" /><span id="word_pic1" class="help-inline"></span>
+					                   </div>
+					                </div>
+					                 <div class=" control-group"   style="margin-bottom:20px;">
+					                   <label class="control-label"></label>
+					                   <div class="controls fileinput-button">
+					                     <span class="fileinput-button"><span>Click Here To Upload</span><input id="fileupload_pic1" type="file" name="files" class="input" ></span>
+					                     <span class=" iconshadow" ><i class="icon-remove" onClick="tool.removeMovie('#pic1')"></i></span>
+					                     <span class="help-text"><span class="label label-important">Max Photo Size:<?php echo C(ATTACHSIZE)/1024/1024;?>M <if condition="$type eq 'newsphotos'">width*height(467*350)<elseif condition="$type eq 'tutorsphotos'"/>width*height(460*344)<elseif condition="$Think.get.pid eq '3'" />width*height(1000*1200)</if></span></span>
+					                   </div>
+					                </div>
+							   <div class="control-group">
+									<label class="control-label">Sort</label>
+									<div class="controls">
+									<input type="text" id="sid2" name="sid[]" class="input-small" />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Title</label>
+									<div class="controls">
+									<input type="text" id="title2" name="title[]" class="input-small"  />
+									</div>
+								</div>
+								<if condition="$type eq 'studentphotos'">
+								<div class="control-group">
+									<label class="control-label">Name:</label>
+									<div class="controls">
+									<input type="text" id="name1" name="name[]" class="input-small"  />
+									</div>
+								</div>
+								</if>
+								 <div class=" control-group">
+					             <label class="control-label">File:</label>
+					                   <div class="controls">
+					                    <input type="text" id="pic2" name="pic[]" /><span id="word_pic2" class="help-inline"></span>
+					                   </div>
+					                </div>
+					                 <div class=" control-group"   style="margin-bottom:20px;">
+					                   <label class="control-label"></label>
+					                   <div class="controls fileinput-button">
+					                     <span class="fileinput-button"><span>Click Here To Upload</span><input id="fileupload_pic2" type="file" name="files" class="input" ></span>
+					                     <span class=" iconshadow" ><i class="icon-remove" onClick="tool.removeMovie('#pic2')"></i></span>
+					                     <span class="help-text"><span class="label label-important">Max Photo Size:<?php echo C(ATTACHSIZE)/1024/1024;?>M <if condition="$type eq 'newsphotos'">width*height(467*350)<elseif condition="$type eq 'tutorsphotos'"/>width*height(460*344)<elseif condition="$Think.get.pid eq '3'" />width*height(1000*1200)</if></span></span>
+					                   </div>
+					                </div>
+								
+								<div class="control-group">
+									<label class="control-label">Sort</label>
+									<div class="controls">
+									<input type="text" id="sid3" name="sid[]" class="input-small"  />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Title</label>
+									<div class="controls">
+									<input type="text" id="title3" name="title[]" class="input-small"  />
+									</div>
+								</div>
+								<if condition="$type eq 'studentphotos'">
+								<div class="control-group">
+									<label class="control-label">Name:</label>
+									<div class="controls">
+									<input type="text" id="name1" name="name[]" class="input-small"  />
+									</div>
+								</div>
+								</if>
+								 <div class=" control-group">
+					             <label class="control-label">File:</label>
+					                   <div class="controls">
+					                    <input type="text" id="pic3" name="pic[]"  /><span id="word_pic3" class="help-inline"></span>
+					                   </div>
+					                </div>
+					                 <div class=" control-group"   style="margin-bottom:20px;">
+					                   <label class="control-label"></label>
+					                   <div class="controls fileinput-button">
+					                     <span class="fileinput-button"><span>Click Here To Upload</span><input id="fileupload_pic3" type="file" name="files" class="input" ></span>
+					                     <span class=" iconshadow" ><i class="icon-remove" onClick="tool.removeMovie('#pic1')"></i></span>
+					                     <span class="help-text"><span class="label label-important">Max Photo Size:<?php echo C(ATTACHSIZE)/1024/1024;?>M <if condition="$type eq 'newsphotos'">width*height(467*350)<elseif condition="$type eq 'tutorsphotos'"/>width*height(460*344)<elseif condition="$Think.get.pid eq '3'" />width*height(1000*1200)</if></span></span>
+					                   </div>
+					                </div>
+								
+								
+								<div class="control-group">
+									<label class="control-label">Sort</label>
+									<div class="controls">
+									<input type="text" id="sid4" name="sid[]" class="input-small"  />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Title</label>
+									<div class="controls">
+									<input type="text" id="title4" name="title[]" class="input-small"  />
+									</div>
+								</div>
+								<if condition="$type eq 'studentphotos'">
+								<div class="control-group">
+									<label class="control-label">Name:</label>
+									<div class="controls">
+									<input type="text" id="name1" name="name[]" class="input-small"  />
+									</div>
+								</div>
+								</if>
+								 <div class=" control-group">
+					             <label class="control-label">File:</label>
+					                   <div class="controls">
+					                    <input type="text" id="pic4" name="pic[]"  /><span id="word_pic4" class="help-inline"></span>
+					                   </div>
+					                </div>
+					                 <div class=" control-group"   style="margin-bottom:20px;">
+					                   <label class="control-label"></label>
+					                   <div class="controls fileinput-button">
+					                     <span class="fileinput-button"><span>Click Here To Upload</span><input id="fileupload_pic4" type="file" name="files" class="input" ></span>
+					                     <span class=" iconshadow" ><i class="icon-remove" onClick="tool.removeMovie('#pic4')"></i></span>
+					                     <span class="help-text"><span class="label label-important">Max Photo Size:<?php echo C(ATTACHSIZE)/1024/1024;?>M <if condition="$type eq 'newsphotos'">width*height(467*350)<elseif condition="$type eq 'tutorsphotos'"/>width*height(460*344)<elseif condition="$Think.get.pid eq '3'" />width*height(1000*1200)</if></span></span>
+					                   </div>
+					                </div>
+								<input type="hidden" id="pid" name="pid" value="{$Think.get.pid}" />
+								<input type="hidden" id="type" name="type" value="{$Think.get.type}" />
+								<div class="control-group" style="margin-top:20px;text-align:right;">
+									<label class="control-label"></label>
+									<div class="controls">
+									<input type="submit" class="btn" value="Upload" id="submit"/>
+									</div>
+								</div>
+							    
+							    </form>
+                   
+                   </div>
+                </div>   
+	           
+	          
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+<!-- Modal -->
+<div id="myModal" class="modal hide fade" tabindex="-1" role="dialog" aria-labelledby="myModalLabel" aria-hidden="true">
+<div class="modal-header">
+<button type="button" class="close" data-dismiss="modal" aria-hidden="true">×</button>
+<h3 id="myModalLabel">Edit Photos</h3>
+</div>
+<div class="modal-body">
+ <form id="editForm" class="form-horizontal" enctype="multipart/form-data" method="post" action="{:U('save')}">
+                              
+								<div class="control-group">
+									<label class="control-label">File</label>
+									<div class="controls">
+									 <span class="help-inline"><img src="" id="file" width="200"/></span>
+									</div>
+								</div>
+                               <div class="control-group">
+									<label class="control-label">Sort</label>
+									<div class="controls">
+									<input type="text" id="sid" name="sid" class="input-small" /><span class="help-inline error">(From large to small)</span>
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">Title</label>
+									<div class="controls">
+									<input type="text" id="title" name="title" class="input-small"  />
+									</div>
+								</div>
+								<if condition="$type eq 'studentphotos'">
+								<div class="control-group">
+									<label class="control-label">Name:</label>
+									<div class="controls">
+									<input type="text" id="name" name="name" class="input-small"  />
+									</div>
+								</div>
+								</if>
+								<input type="hidden" id="id" name="id" value="" />
+								<input type="hidden" id="type" name="type" value="{$type}" />
+								<div class="control-group" style="margin-top:20px;">
+									<label class="control-label"></label>
+									<div class="controls">
+									<input type="submit" class="btn" value="Submit" id="submit"/>
+									</div>
+								</div>
+							    
+</form>								
+</div>
+</div>
+      <footer>
+        <p>&copy; Company 2014</p>
+      </footer>
+
+    </div>
+<script src="__JS__/jquery-1.8.2.min.js"></script>
+<script src="__JS__/bootstrap.min.js"></script>
+<script src="__JS__/jquery.form.js"></script>
+<script src="__JS__/CheckForm.js"></script>
+<script src="__JS__/jquery-ui.min.js"></script>
+<script src="__JS__/jquery.fileupload.js"></script>
+<script src="__JS__/common.js"></script>    
+<script>
+var tool={
+		uploadMovie:function(url,btn,input,msg){
+			jQuery(btn).fileupload({
+			    url: url,
+			    dataType: 'json',
+			    done: function (e, data) {
+			    	jQuery.each(data.result.files, function (index, file) {
+			    		
+			        	if(file.error){
+			        		alert(file.error);
+			        	}else
+			        	   jQuery(input).val(file.name);
+			        });
+			    },
+			    progressall: function (e, data) {
+			        var progress = parseInt(data.loaded / data.total * 100, 10);
+			         $(msg).html('upload:'+progress + '%');
+			    }
+			}).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+		},
+		removeMovie:function(obj){
+			jQuery(obj).val("");
+		}
+};	
+jQuery(function(){
+	var url='__URL__/uploadPic/model/{$type}';
+	tool.uploadMovie(url,"#fileupload_pic1",'#pic1',"#word_pic1");
+	tool.uploadMovie(url,"#fileupload_pic2",'#pic2',"#word_pic2");
+	tool.uploadMovie(url,"#fileupload_pic3",'#pic3',"#word_pic3");
+	tool.uploadMovie(url,"#fileupload_pic4",'#pic4',"#word_pic4");
+});
+  function edit(id){
+	  var url="__URL__/getPhoto/type/{$type}/id/"+id;
+	  $.get(url,function(data){
+		  data=eval("("+data+")");
+		  var id=data['id'];
+		  var sid=data['sid'];
+		  var title=data['title'];
+		  var path="{:SITE_PATH}/Uploads/"
+		  var img=path+data['pic'];
+		  jQuery("#id").val(id);
+		  jQuery("#sid").val(sid);
+		  jQuery("#title").val(title);
+		  <if condition="$type eq 'studentphotos'">
+		  jQuery("#name").val(data['name']);
+		  </if>
+		  jQuery("#file").attr('src',img);
+		  $('#myModal').modal('show')
+	  });
+  }
+  function del(url){
+	  if(url=='') return false;
+      if(window.confirm('Are you sure to delete this record?')){	  
+		  $.get(url,function(responseText){
+			    var info=responseText['info'];
+		        var status=responseText['status'];
+		        var url=responseText['url'];
+		        if(status==1){
+		        //alert(info)
+		        window.location.reload();
+		        }
+		  });
+		  return true;
+	  }
+  }
+</script>   
+</body>
+</html>

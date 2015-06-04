@@ -1,0 +1,14 @@
+<include file="Common:head"/>
+<include file="Common:header"/>
+<!-- Contents -->
+<div class="contents">
+    {$list.content|html_entity_decode=###}
+</div>
+<include file="Common:footer2"/>
+<script>
+$(document).ready(function (){
+function clear_menuc(){$("#menu-home-div").css('background-color','#ffffff');$("#menu-whoweare-div").css('background-color','#ffffff');$("#menu-whatwedo-div").css('background-color','#ffffff');$("#menu-smartchoice-div").css('background-color','#ffffff');$("#menu-portfolio-div").css('background-color','#ffffff');$("#menu-clientlist-div").css('background-color','#ffffff');$("#menu-contactus-div").css('background-color','#ffffff');$("#menu-home-a").css('color','#646464');$("#menu-whoweare-a").css('color','#646464');$("#menu-whatwedo-a").css('color','#646464');$("#menu-smartchoice-a").css('color','#646464');$("#menu-portfolio-a").css('color','#646464');$("#menu-clientlist-a").css('color','#646464');$("#menu-contactus-a").css('color','#646464');};
+(function init(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');$("#menu-home-div").mouseover(function(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');});$("#menu-whoweare-div").mouseover(function(){clear_menuc();$("#menu-whoweare-div").css('background-color','#faa815');$("#menu-whoweare-a").css('color','#f0f0f0');});$("#menu-whatwedo-div").mouseover(function(){clear_menuc();$("#menu-whatwedo-div").css('background-color','#faa815');$("#menu-whatwedo-a").css('color','#f0f0f0');});$("#menu-smartchoice-div").mouseover(function(){clear_menuc();$("#menu-smartchoice-div").css('background-color','#faa815');$("#menu-smartchoice-a").css('color','#f0f0f0');});$("#menu-portfolio-div").mouseover(function(){clear_menuc();$("#menu-portfolio-div").css('background-color','#faa815');$("#menu-portfolio-a").css('color','#f0f0f0');});$("#menu-clientlist-div").mouseover(function(){clear_menuc();$("#menu-clientlist-div").css('background-color','#faa815');$("#menu-clientlist-a").css('color','#f0f0f0');});$("#menu-contactus-div").mouseover(function(){clear_menuc();$("#menu-contactus-div").css('background-color','#faa815');$("#menu-contactus-a").css('color','#f0f0f0');});})();});
+</script>
+</body>
+</html>

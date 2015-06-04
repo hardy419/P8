@@ -1,0 +1,183 @@
+<include file="Common:header" />
+<body>
+<link href="__CSS__/datepicker.css" type="text/css" rel="stylesheet" />
+<div class="container" style="width:1480px;">
+      <div class="row">
+        <div class="span3">
+         <include file="Common:menu" />
+        </div><!--/span-->
+        <div class="span9">
+                     <ul class="breadcrumb">
+				    <li><a href="#">Home</a> <span class="divider">/</span></li>
+				    <li><a href="#">{$type|ucfirst} Management</a> <span class="divider">/</span></li>
+				    <li class="active">{$type|ucfirst} Management</li>
+				    </ul>
+				<legend><if condition="$list['id'] neq ''">Edit<else/>Add</if> {$type|ucfirst}</legend>	
+                    <form class="form-horizontal" id="myForm" method="post" action="{:U('save')}" onsubmit="myForm.submit();">
+                        <div class="control-group">
+                        <label class="control-label">Title:</label>
+                        <div class="controls">
+                        <input type="text" id="title" name="title" check="Require" warning="Title cann't be empty" value="{$list.title}" >
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <label class="control-label">Catagory :</label>
+                        <div class="controls">
+                        <select id="cid" name="cid" check="Require" warning="Please select a catagory" >
+                        <volist name='catalist' id='vo'>
+                            <if condition="$list['cid'] eq $vo['id']">
+                            <option value="{$vo.id}" selected='selected'>{$vo.name}</option>
+                            <else/>
+                            <option value="{$vo.id}">{$vo.name}</option>
+                            </if>
+                        </volist>
+                        </select>
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <label class="control-label">Description (Optional) :</label>
+                        <div class="controls">
+                        <input type="text" id="description" name="description" value="{$list.description}" >
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <label class="control-label">Date :</label>
+                        <div class="controls">
+                        <input type="text" id="datepicker" name="datepicker" check="Require" warning="Date cann't be empty" <if condition="$list['id'] eq ''">value="<?php echo date("Y-m-d");?>"<else/>value="{$list.date}"</if> >
+                        </div>
+                        </div>
+                        <div class="control-group">
+                        <label class="control-label">Preview Image:</label>
+                        <div class="controls">
+                        <input type="text" id="preview" name="preview" value="{$list.preview}" ><span id="upload-progress" class="help-inline"></span>
+                        </div>
+                        </div>
+                        <div class=" control-group">
+                               <label class="control-label"></label>
+                               <div class="controls fileinput-button">
+                                 <span class="fileinput-button"><span>Click Here To Upload</span><input id="fileupload" type="file" name="files" class="input" ></span>
+                                 <span class=" iconshadow" ><i class="icon-remove" onClick="tool.removeMovie('#time')"></i></span>
+                                 <span class="help-text"><span class="label label-important">Max File Size:<?php echo C(ATTACHSIZE)/1024/1024;?>M</span></span>
+                               </div>
+                            </div>
+
+                        <input type="hidden" id="date" name="date" value="{$list.date}" />
+                        <input type="hidden" id="id" name="id" value="{$list.id}" />
+                        <input type="hidden" id="type" name="type" value="{$type}" />
+                        <div class="control-group">
+                        <div class="controls">
+                        <button type="submit" class="btn">Submit</button>
+                        </div>
+                        </div>
+				    </form>
+	          
+        </div><!--/span-->
+      </div><!--/row-->
+
+      <hr>
+
+    </div>
+<script src="__JS__/jquery-1.8.2.min.js"></script>
+<script src="__JS__/jquery.form.js"></script>
+<script src="__JS__/CheckForm.js"></script>
+<script src="__JS__/jquery-ui.min.js"></script>
+<script src="__JS__/jquery.fileupload.js"></script>
+<script src="__JS__/bootstrap-datepicker.js"></script>
+<script src="__JS__/common.js"></script>
+<script>
+Date.prototype.Format = function(fmt) 
+{ //author: meizz 
+  var o = { 
+    "M+" : this.getMonth()+1,
+    "d+" : this.getDate(),
+    "h+" : this.getHours(),
+    "m+" : this.getMinutes(),
+    "s+" : this.getSeconds(),
+    "q+" : Math.floor((this.getMonth()+3)/3),
+    "S"  : this.getMilliseconds()
+  }; 
+  if(/(y+)/.test(fmt)) 
+    fmt=fmt.replace(RegExp.$1, (this.getFullYear()+"").substr(4 - RegExp.$1.length)); 
+  for(var k in o) 
+    if(new RegExp("("+ k +")").test(fmt)) 
+  fmt = fmt.replace(RegExp.$1, (RegExp.$1.length==1) ? (o[k]) : (("00"+ o[k]).substr((""+ o[k]).length))); 
+  return fmt; 
+}
+var tool={
+		uploadMovie:function(url,btn,input,msg){
+			jQuery(btn).fileupload({
+			    url: url,
+			    dataType: 'json',
+			    done: function (e, data) {
+			    	jQuery.each(data.result.files, function (index, file) {
+			    		
+			        	if(file.error){
+			        		alert(file.error);
+			        	}else
+			        	   jQuery(input).val(file.name);
+			        });
+			    },
+			    progressall: function (e, data) {
+			        var progress = parseInt(data.loaded / data.total * 100, 10);
+			         $(msg).html('upload:'+progress + '%');
+			    }
+			}).prop('disabled', !$.support.fileInput).parent().addClass($.support.fileInput ? undefined : 'disabled');
+		},
+		removeMovie:function(obj){
+			jQuery(obj).val("");
+		}
+};	
+$(function(){
+	//var url='__URL__/uploadPdf';
+	var url='__URL__/uploadPic/model/project';
+	tool.uploadMovie(url,"#fileupload",'#preview',"#upload-progress");
+	
+	jQuery("#datepicker").datepicker({
+		format:'yyyy-mm-dd'
+	}).on('changeDate',function(e){
+        $('#date').attr('value',e.date.Format('yyyy-MM-dd'));
+    });
+});
+
+/*
+function add_image(url) {
+	var e=document.getElementById('image-group');
+	var a=document.createElement('p');
+	a.innerHTML='<input type="text" class="images" name="imgs[]" value="'+url+'"/>';
+	e.appendChild(a);
+}
+function smt() {
+	var imgs='';
+	$(".images").each(function(){
+		imgs+=$(this).val()+'|';
+	});
+	while(imgs.substr(-1,1)=='|'){
+		imgs=imgs.substr(0,imgs.length-1);
+	}
+	var e=document.getElementById('image-group');
+	e.innerHTML='';
+	e=document.createElement('input');
+	e.type='hidden';
+	e.name='images';
+	e.value=imgs;
+	myForm=document.getElementById('myForm');
+	myForm.appendChild(e);
+	myForm.submit();
+}
+$(document).ready(function(){
+	var id=<if condition="$list['id'] neq ''">{$list['id']}<else/>-1</if>;
+	if(-1==id){
+		add_image('');
+	}
+	else{
+		var str="{$list['images']}";
+		var imgs=str.split('|');
+		for(var k in imgs){
+			add_image(imgs[k]);
+		}
+	}
+});
+*/
+</script>
+</body>
+</html>

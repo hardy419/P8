@@ -1,0 +1,117 @@
+<include file="Common:head"/>
+<include file="Common:header"/>
+<!-- Contents -->
+<div class="contents">
+    <style>
+    ul {padding:0px;}
+
+    .intro-title {border-left: 8px solid rgb(254,168,21); padding-left:12px; font-size:24px; font-weight:600; color:#646464;}
+    #intro img {float:left; margin:30px 10px 20px 0px;}
+    #intro-text {float:left; width:740px; margin:30px 0px 20px 0px;}
+    #intro-text p {position:relative; left:12px; text-align:justify;line-height:1.1;margin:8px;}
+
+    #details {}
+    #details>ul {list-style: outside none none;}
+    #details>ul>li {margin-bottom:20px;}
+    .detail-title {font-style:italic; font-size:18px; color:#484848; font-weight:400; margin:20px auto 10px 16px;}
+    .detail-li-left {width:30%;}
+    .detail-li-middle {width:36%;}
+    .detail-li-right {width:30%;}
+    .detail-li-left,.detail-li-middle {float:left;}
+    .detail-li-right {float:right;}
+    .detail-title+ul {list-style:none outside url('/gc/Public/Img/GC/list_style_image.png'); width:80%;}
+    .detail-title+ul li {font-size:13px; font-weight:300; margin:10px 0px 0px 0px; position:relative; left:16px;}
+    .detail-title+ul li ul {clear:both;}
+    .detail-title+ul li ul li {float:left;}
+    </style>
+
+    <div id="intro">
+        <img src="/gc/Public/Img/GC/bulb.png"></img>
+        <div id="intro-text">
+            <div class="intro-title">WHO WE ARE</div>
+            <p>GC is a public relations firm that provides marketing solution for corporate and clients.  Our scope of service include corporate communication, event planning, media relations and social media marketing etc.  We pledge to provide all-rounded public relations services.</p>
+            <p>GC is committed to providing the best for clients, we listen attentively to their needs and provide the best solutions that are within the client’s budget.  Clients can count on us to come up with the most effective marketing campaign and communication strategies to help them boost sales and arouse brand awareness.</p>
+        </div>
+    </div>
+    <hr style="clear:both" />
+    <div id="details">
+        <ul>
+            <li class="detail-li-left">
+                <div class="detail-title">GC’s scope of service</div>
+                <ul>
+                    <li>Marketing and brand communications</li>
+                    <li>Marketing communications</li>
+                    <li>Branding strategies</li>
+                    <li>Hosting press conferences</li>
+                    <li>Brand promotion and new product launch</li>
+                    <li>Brand crossover and sponsorships</li>
+                    <li>Production of promotion materials</li>
+                </ul>
+            </li>
+            <li class="detail-li-middle">
+                <div class="detail-title">Digital and social media marketing</div>
+                <ul>
+                    <li>Promotion on social media</li>
+                    <li>Design and promotion strategies for product placement in online advertisement</li>
+                    <li>Planning for interactive online promotion activities</li>
+                    <li>Corporate website design, website content development and updates</li>
+                    <li>Digital marketing strategies</li>
+                    <li>Blogger outreach</li>
+                </ul>
+            </li>
+            <li class="detail-li-right">
+                <div class="detail-title">&nbsp;</div>
+                <ul>
+                    <li>Social media and online advertising</li>
+                    <li>Social media research and monitoring</li>
+                    <li>Social media management</li>
+                    <li>Gathering market updates and giving analysis</li>
+                </ul>
+            </li>
+            <div style="clear:both;"></div>
+            <li class="detail-li-left">
+                <div class="detail-title">Media relations</div>
+                <ul>
+                    <li>Arranging media interviews</li>
+                    <li>Writing and distribution of press releases</li>
+                    <li>Hosting press conferences</li>
+                    <li>Market positioning and indentifying news angles</li>
+                    <li>Organising of media tours</li>
+                    <li>Hosting corporate events</li>
+                    <li>Hosting media gatherings</li>
+                    <li>Monitor media coverage</li>
+                </ul>
+            </li>
+            <li class="detail-li-middle">
+                <div class="detail-title">Event planning</div>
+                <ul>
+                    <li>Locating venues and providing design and production of venues</li>
+                    <li>Hosting activities and seminars</li>
+                    <li>Organise event run-downs</li>
+                    <li>Media reception and public relations</li>
+                    <li>Production of publications, souvenir and sourcing for supplies for events</li>
+                    <li>Hosting seminars, forums, exhibitions and lectures</li>
+                    <li>Annual dinners</li>
+                    <li>Opening ceremonies</li>
+                </ul>
+            </li>
+            <li class="detail-li-right">
+                <div class="detail-title">&nbsp;</div>
+                <ul>
+                    <li>Exhibitions and road shows</li>
+                    <li>Formal receptions</li>
+                    <li>Catering and transport arrangements for events</li>
+                </ul>
+            </li>
+            <div style="clear:both;"></div>
+        </ul>
+    </div>
+</div>
+<include file="Common:footer2"/>
+<script>
+$(document).ready(function (){
+function clear_menuc(){$("#menu-home-div").css('background-color','#ffffff');$("#menu-whoweare-div").css('background-color','#ffffff');$("#menu-whatwedo-div").css('background-color','#ffffff');$("#menu-smartchoice-div").css('background-color','#ffffff');$("#menu-portfolio-div").css('background-color','#ffffff');$("#menu-clientlist-div").css('background-color','#ffffff');$("#menu-contactus-div").css('background-color','#ffffff');$("#menu-home-a").css('color','#646464');$("#menu-whoweare-a").css('color','#646464');$("#menu-whatwedo-a").css('color','#646464');$("#menu-smartchoice-a").css('color','#646464');$("#menu-portfolio-a").css('color','#646464');$("#menu-clientlist-a").css('color','#646464');$("#menu-contactus-a").css('color','#646464');};
+(function init(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');$("#menu-home-div").mouseover(function(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');});$("#menu-whoweare-div").mouseover(function(){clear_menuc();$("#menu-whoweare-div").css('background-color','#faa815');$("#menu-whoweare-a").css('color','#f0f0f0');});$("#menu-whatwedo-div").mouseover(function(){clear_menuc();$("#menu-whatwedo-div").css('background-color','#faa815');$("#menu-whatwedo-a").css('color','#f0f0f0');});$("#menu-smartchoice-div").mouseover(function(){clear_menuc();$("#menu-smartchoice-div").css('background-color','#faa815');$("#menu-smartchoice-a").css('color','#f0f0f0');});$("#menu-portfolio-div").mouseover(function(){clear_menuc();$("#menu-portfolio-div").css('background-color','#faa815');$("#menu-portfolio-a").css('color','#f0f0f0');});$("#menu-clientlist-div").mouseover(function(){clear_menuc();$("#menu-clientlist-div").css('background-color','#faa815');$("#menu-clientlist-a").css('color','#f0f0f0');});$("#menu-contactus-div").mouseover(function(){clear_menuc();$("#menu-contactus-div").css('background-color','#faa815');$("#menu-contactus-a").css('color','#f0f0f0');});})();});
+</script>
+</body>
+</html>

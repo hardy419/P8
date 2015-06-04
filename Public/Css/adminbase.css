@@ -1,0 +1,59 @@
+body {
+padding-top: 10px;
+padding-bottom: 40px;
+font-size:14px;
+
+}
+.sidebar-nav {
+padding: 9px 0;
+box-shadow:none;
+min-height:660px;
+_height:660px;
+border-radius:0px;
+overflow:visiable;
+}
+.container{margin:0px 10px;}
+a{color:#000}
+.nav-header{font-size:14px;}
+.span9{width:1160px;}
+.container, .navbar-static-top .container, .navbar-fixed-top .container, .navbar-fixed-bottom .container{width:1480px;}
+.table th, .table td{padding:8px 4px;}
+.form-horizontal .control-label{width:100px;}
+.form-horizontal .controls{margin-left:110px}
+
+#console{height:400px;background:#000;color:#fff;width:97%;font-size:12px;overflow:scroll;padding:20px;}
+.table th, .table td{border:none;}
+
+.fileinput-button {
+    overflow: hidden;
+    position: relative;
+}
+.fileinput-button input {
+    cursor: pointer;
+    direction: ltr;
+    font-size: 200px;
+    margin: 0;
+    opacity: 0;
+    position: absolute;
+    right: 0;
+    top: 0;
+}
+a:hover,a:focus{color:#000;}
+select, textarea, input[type="text"], input[type="password"], input[type="datetime"], input[type="datetime-local"], input[type="date"], input[type="month"], input[type="time"], input[type="week"], input[type="number"], input[type="email"], input[type="url"], input[type="search"], input[type="tel"], input[type="color"], .uneditable-input,.pagination ul > li > a, .pagination ul > li > span,.btn{border-radius:0px !important;}
+.nav li a:hover,.nav-list > .active > a, .nav-list > .active > a:hover, .nav-list > .active > a:focus{background-color:#ffff00;color:#000;}
+.nav-list > li > a,a{box-shadow:none;text-shadow:none;}
+
+span.error {
+  color:red;
+}
+
+#abc-colorPicker .colorPick-close,#color-colorPicker .colorPick-close{position:absolute;right:0;}
+#abc-colorPicker a,#color-colorPicker a,#colorPicker a{border-bottom:1px solid #000;border-left:1px solid #FFF;border-right:1px solid #000;border-top:1px solid #FFF;cursor:pointer;display:block;float:left;height:15px;overflow:hidden;width:15px;}
+#abc-colorPicker a:hover,#color-colorPicker a:hover,#colorPicker a:hover{opacity:.5;}
+#abc-colorPicker li,#color-colorPicker li,#colorPicker li{display:inline;list-style:none;overflow:hidden;}
+#abc-colorPicker ul,#color-colorPicker ul,#colorPicker ul{-moz-transition:all .8s ease-in 1s;-ms-transition:all .8s ease-in 1s;-o-transition:all .8s ease-in 1s;-webkit-transition:all .8s ease-in 1s;float:left;margin:0;overflow:hidden;transition:all .8s ease-in 1s;width:102px;}
+#abc-colorPicker,#color-colorPicker,#colorPicker{background:#FFF;border:solid 1px #eee;display:none;padding:5px;width:312px;}
+#demo{height:600px;margin:0 auto;width:800px;}
+.colorPicker-container a:hover{border-bottom:1px solid #000;border-top:1px solid #000;}
+.colorPicker-preview{color:#FFF;display:inline-block;height:30px;line-height:30px;width:60px;}
+.colorPicker-title{height:30px;overflow:hidden;}

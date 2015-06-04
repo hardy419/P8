@@ -1,0 +1,41 @@
+<include file="Common:head"/>
+<include file="Common:header"/>
+<!-- Contents -->
+<div class="contents">
+    <style>
+    ul {padding:0px;}
+
+    #clientlist-container {width:810px;margin:40px auto 50px;}
+    .intro-title {border-left: 8px solid rgb(254,168,21); padding-left:7px; font-size:24px; font-weight:600; color:#646464;}
+    .clientlist-title {margin-left:25px;margin-bottom:30px;}
+    .clientlist-div ul {list-style: outside none none;}
+    .clientlist-div ul li ul {clear:both;}
+    .clientlist-div ul li ul li {float:left;}
+    .li-w33 {width:33%;}
+    </style>
+
+    <div id="clientlist-container">
+        <div class="intro-title clientlist-title">Client List</div>
+        <hr/>
+        <div class="clientlist-div">
+            <ul>
+                <li>
+                    <ul><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo1.png"></img></a></li><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo2.png"></img></a></li><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo3.png"></img></a></li></ul>
+                    <ul><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo4.png"></img></a></li><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo5.png"></img></a></li><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo6.png"></img></a></li></ul>
+                    <ul><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo7.png"></img></a></li><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo8.png"></img></a></li><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo9.png"></img></a></li></ul>
+                    <ul><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo10.png"></img></a></li><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo11.png"></img></a></li><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo12.png"></img></a></li></ul>
+                    <ul><li class="li-w33"><a href="#"><img src="/gc/Public/Img/GC/client_logo13.png"></img></a></li></ul>
+                </li>
+            </ul>
+            <div style="clear:both;"></div>
+        </div>
+    </div>
+</div>
+<include file="Common:footer2"/>
+<script>
+$(document).ready(function (){
+function clear_menuc(){$("#menu-home-div").css('background-color','#ffffff');$("#menu-whoweare-div").css('background-color','#ffffff');$("#menu-whatwedo-div").css('background-color','#ffffff');$("#menu-smartchoice-div").css('background-color','#ffffff');$("#menu-portfolio-div").css('background-color','#ffffff');$("#menu-clientlist-div").css('background-color','#ffffff');$("#menu-contactus-div").css('background-color','#ffffff');$("#menu-home-a").css('color','#646464');$("#menu-whoweare-a").css('color','#646464');$("#menu-whatwedo-a").css('color','#646464');$("#menu-smartchoice-a").css('color','#646464');$("#menu-portfolio-a").css('color','#646464');$("#menu-clientlist-a").css('color','#646464');$("#menu-contactus-a").css('color','#646464');};
+(function init(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');$("#menu-home-div").mouseover(function(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');});$("#menu-whoweare-div").mouseover(function(){clear_menuc();$("#menu-whoweare-div").css('background-color','#faa815');$("#menu-whoweare-a").css('color','#f0f0f0');});$("#menu-whatwedo-div").mouseover(function(){clear_menuc();$("#menu-whatwedo-div").css('background-color','#faa815');$("#menu-whatwedo-a").css('color','#f0f0f0');});$("#menu-smartchoice-div").mouseover(function(){clear_menuc();$("#menu-smartchoice-div").css('background-color','#faa815');$("#menu-smartchoice-a").css('color','#f0f0f0');});$("#menu-portfolio-div").mouseover(function(){clear_menuc();$("#menu-portfolio-div").css('background-color','#faa815');$("#menu-portfolio-a").css('color','#f0f0f0');});$("#menu-clientlist-div").mouseover(function(){clear_menuc();$("#menu-clientlist-div").css('background-color','#faa815');$("#menu-clientlist-a").css('color','#f0f0f0');});$("#menu-contactus-div").mouseover(function(){clear_menuc();$("#menu-contactus-div").css('background-color','#faa815');$("#menu-contactus-a").css('color','#f0f0f0');});})();});
+</script>
+</body>
+</html>

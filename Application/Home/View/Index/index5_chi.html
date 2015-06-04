@@ -1,0 +1,53 @@
+<include file="Common:head"/>
+<include file="Common:header"/>
+<!-- Contents -->
+<div class="contents">
+    <style>
+    ul {padding:0px;}
+
+    .intro-title {border-left: 8px solid rgb(254,168,21); padding-left:7px; font-size:24px; font-weight:600; color:#646464;}
+
+    #contact-div {float:left; width:450px; margin-left:20px;}
+    #contact-div .intro-title {margin-bottom:30px;}
+    #contact-div tr {margin-bottom:20px;}
+    #contact-div tr td {font-size:16px; font-style:italic; color:#323232; font-weight:300; vertical-align:top;}
+    #contact-div tr td:first-child {width:20%;}
+    #contact-div tr td:last-child {width:80%;}
+
+    #info-div  {float:right; width:500px; border-left: 1px solid rgb(254,168,21); padding-left:45px;}
+    .info-text-div {width:340px;margin-right:160px;}
+    #info-div p {font-size:16px; font-style:italic; color:#323232; font-weight:300; margin:5px auto;}
+    #info-div iframe {margin-top:20px; width:420px;height:300px; border:2px solid #c0c0c0; padding:10px;}
+    </style>
+
+    <div id="contact-div">
+        <div class="intro-title">聯絡我們</div>
+        <form name="contact" action="Contactus/sendmsg" method="POST">
+            <table cellspacing="12">
+                <tr><td>Name:</td><td><input type="text" name="name"></input></td></tr>
+                <tr><td>Email:</td><td><input type="text" name="email"></input></td></tr>
+                <tr><td>Phone:</td><td><input type="text" name="phone"></input></td></tr>
+                <tr><td>Message:</td><td><textarea name="message" rows="10" cols="35"></textarea></td></tr>
+                <tr><td></td><td><input type="submit" id="submit-btn" value="Submit"></input></td></tr>
+            </table>
+        </form>
+    </div>
+    <div id="info-div">
+        <div class="info-text-div">
+            <p>電話  :  2898 8283</p>
+            <p>傳真  :  3914 6999</p>
+            <p>電郵  :  info@gccomhk.com</p>
+            <p>地址  :  香港觀塘敬業街59號敬業工廠大廈1樓B10室</p>
+        </div>
+        <iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3691.1821086101577!2d114.2261956!3d22.3089515!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x3404014524f85ce9%3A0x1910c94cec866b8c!2z6aaZ5riv6KeA5aGY5pWs5qWt6KGXNTnomZ_mlazmpa3lt6Xlu6DlpKflu4g!5e0!3m2!1szh-CN!2sus!4v1429235842623" width="420" height="300" frameborder="0"></iframe>
+    </div>
+    <div style="clear:both;"></div>
+</div>
+<include file="Common:footer2"/>
+<script>
+$(document).ready(function (){
+function clear_menuc(){$("#menu-home-div").css('background-color','#ffffff');$("#menu-whoweare-div").css('background-color','#ffffff');$("#menu-whatwedo-div").css('background-color','#ffffff');$("#menu-smartchoice-div").css('background-color','#ffffff');$("#menu-portfolio-div").css('background-color','#ffffff');$("#menu-clientlist-div").css('background-color','#ffffff');$("#menu-contactus-div").css('background-color','#ffffff');$("#menu-home-a").css('color','#646464');$("#menu-whoweare-a").css('color','#646464');$("#menu-whatwedo-a").css('color','#646464');$("#menu-smartchoice-a").css('color','#646464');$("#menu-portfolio-a").css('color','#646464');$("#menu-clientlist-a").css('color','#646464');$("#menu-contactus-a").css('color','#646464');};
+(function init(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');$("#menu-home-div").mouseover(function(){clear_menuc();$("#menu-home-div").css('background-color','#faa815');$("#menu-home-a").css('color','#f0f0f0');});$("#menu-whoweare-div").mouseover(function(){clear_menuc();$("#menu-whoweare-div").css('background-color','#faa815');$("#menu-whoweare-a").css('color','#f0f0f0');});$("#menu-whatwedo-div").mouseover(function(){clear_menuc();$("#menu-whatwedo-div").css('background-color','#faa815');$("#menu-whatwedo-a").css('color','#f0f0f0');});$("#menu-smartchoice-div").mouseover(function(){clear_menuc();$("#menu-smartchoice-div").css('background-color','#faa815');$("#menu-smartchoice-a").css('color','#f0f0f0');});$("#menu-portfolio-div").mouseover(function(){clear_menuc();$("#menu-portfolio-div").css('background-color','#faa815');$("#menu-portfolio-a").css('color','#f0f0f0');});$("#menu-clientlist-div").mouseover(function(){clear_menuc();$("#menu-clientlist-div").css('background-color','#faa815');$("#menu-clientlist-a").css('color','#f0f0f0');});$("#menu-contactus-div").mouseover(function(){clear_menuc();$("#menu-contactus-div").css('background-color','#faa815');$("#menu-contactus-a").css('color','#f0f0f0');});})();});
+</script>
+</body>
+</html>

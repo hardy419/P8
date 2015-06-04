@@ -1,0 +1,47 @@
+<div class="well sidebar-nav">
+            
+            <ul class="nav nav-list">
+            <p>Admin：<?php echo $_SESSION['loginUserName'];?>&nbsp;&nbsp;<a href="javascript:void(0);" id="logoutBtn">Logout</a></p>
+              <!-- <li class="nav-header">最新消息</li>
+              <li <if condition="$type eq 'news'">class="active"</if>><a href="{:U('List/index',array('type'=>'news'))}">最新消息</a></li>
+              <li class="nav-header">對外合作</li>
+              <li <if condition="$type eq 'tutors'">class="active"</if>><a href="{:U('Cooperation/index')}">對外合作</a></li>
+              <li class="nav-header">報章報導</li>
+              <li <if condition="$type eq 'tutors'">class="active"</if>><a href="{:U('Report/index')}">報章報導</a></li>
+              <li class="nav-header">教學理念</li>
+              <li <if condition="$type eq 'x'">class="active"</if>><a href="{:U('Idea/index',array('id'=>1))}">教學理念</a></li>
+              <li class="nav-header"> Case Studies of Student</li>
+              <li  <if condition="$type eq 'case'">class="active"</if>><a href="{:U('List/index',array('type'=>'case'))}"> Case Studies of Student</a></li>
+              <li class="nav-header">成就及作品</li>
+              <li  <if condition="$Think.get.pid eq '1'">class="active"</if>><a href="{:U('List/photos',array('type'=>'studentphotos','pid'=>1))}">學生成就</a></li>
+              <li  <if condition="$Think.get.pid eq '2'">class="active"</if>><a href="{:U('List/photos',array('type'=>'studentphotos','pid'=>2))}">作品欣賞</a></li>
+              <li  <if condition="$Think.get.pid eq '3'">class="active"</if>><a href="{:U('Child/index')}">孩子之聲</a></li>
+
+              <li class="nav-header">藝術課程</li>
+               <li  <if condition="$Think.get.cid eq '1'">class="active"</if>><a href="{:U('Course/index')}">藝術課程</a></li> >
+                <li class="nav-header">頁面管理</li>
+                <li><a href="{:U('List/index/type/page')}">頁面管理</a></li>
+                <li class="nav-header">橫幅管理</li>
+                <li><a href="{:U('List/index/type/banner')}">橫幅管理</a></li>
+                <li class="nav-header">項目管理</li>
+                <li><a href="{:U('List/index/type/category')}">分類管理</a></li-->
+                <li class="nav-header">圖片管理</li>
+                <li><a href="{:U('List/photos/pid/1/type/projectphoto')}">圖片管理</a></li>
+            </ul>
+</div><!--/.well -->
+<script src="__JS__/jquery-1.8.2.min.js"></script>
+<script>
+jQuery(function(){
+   jQuery("#logoutBtn").click(function(){
+		$.get('{:U('Common/logout')}',function(responseText){
+		    var info=responseText['info'];
+	        var status=responseText['status'];
+	        var url=responseText['url'];
+	        if(status==1){
+	        alert(info)
+	        window.location.href=url;
+	        } else alert(info);
+	  });
+   });
+});
+</script>

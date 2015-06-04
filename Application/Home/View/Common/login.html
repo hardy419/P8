@@ -1,0 +1,117 @@
+<include file="Common:head"/>
+<body class="register">
+<!-- Header starts -->
+<include file="Common:header"/>
+<!-- Header ends -->
+
+<div id="mainWrapper"> 
+	<div id="mainContainer">
+		<div id="contentContainer">
+			<div id="sectionContainer">
+				<!-- contact us Content starts -->
+				<div class="registerContainer clearfix">
+					<div class="Col">
+						<h2>Login</h2>
+						<form id="regForm" name="regForm" class="regForm">
+							<dl>
+								<dt>Name :</dt>
+								<dd><input type="text" name="name" id="name" class="{required:true,messages:{required:'Please input yourname'}}" /></dd>
+								<dt>Password:</dt>
+								<dd><input type="password" name="password" id="password" class="{required:true,messages:{required:'Please input password'}}" /></dd>
+								<dt>Verify:</dt>
+								<dd style="width:298px"><input type="text" name="secode" id="secode" style="width:180px;margin-right:10px;" class="{required:true,minlength:4,messages:{required:'Please input verify'}}"/><a href="javascript:Verify('#verifyImg','__URL__/verify/')" style="float:right;"><IMG SRC="__URL__/verify/" name="verifyImg" BORDER="0" align="absmiddle" id="verifyImg"  title="change verify,please click here"><br/><span style="font-size:10px;float:right;" class="refresh">Refresh Verify Code</span></a></dd>
+								
+							</dl>
+							<div class="formBtns">
+								<a href="javascript:;" class="btnSend">Login</a>
+							</div>
+						</form>
+					</div>
+				</div>
+				<!-- contact us Content ends -->
+			</div>
+		</div>
+	</div>
+</div>
+
+<!-- Footer starts -->
+<include file="Common:footer"/>
+<!-- Footer ends -->
+<script type="text/javascript" language="javascript">
+	validateRegForm2('regForm');
+	function Verify(obj,path){
+		//重载验证码
+		var timenow = new Date().getTime();
+		var url=path+timenow;
+		jQuery(obj).attr('src',url);
+	  }
+	function validateRegForm2(myform)
+	{
+		$('form.'+myform).validate({
+			success: function(label) {
+				label.addClass("valid");
+			},
+			showErrors: function(errorMap, errorList) {
+                var msg = "";
+                jQuery.each(errorList, function(i, v) {
+                    msg += (v.message + "\r\n");
+                });
+                if (msg != ""){
+                    alert(msg);
+               } 
+         },
+			submitHandler: function() {
+				var data;
+				data = {
+					'account': d.getElementById("name").value, 
+					'secode': d.getElementById("secode").value,
+					'password':  d.getElementById("password").value
+				};
+				$.ajax({
+					url:"{:U('checkLog')}",
+					type: "POST",
+					data: data, 
+					async: false,
+					success: function(data)
+					{
+						var status=data['status'];
+						if (status==1){
+							$.colorbox({
+								html:'<div class="freeClassTrial"><p class="thank">'+data['info']+'</p></div>',
+								width:480,
+								opacity:0.8,
+								transition:'fade',
+								onComplete:function(){
+									setTimeout(function(){
+										$.colorbox.close();
+										window.location.href=data['url'];
+										Verify('#verifyImg','__URL__/verify/');
+									},3000);
+								}
+							});
+						}else{
+							$.colorbox({
+								html:'<div class="freeClassTrial"><p class="thank">'+data['info']+'</p></div>',
+								width:480,
+								opacity:0.8,
+								transition:'fade',
+								onComplete:function(){
+									setTimeout(function(){
+										$.colorbox.close();
+										Verify('#verifyImg','__URL__/verify/');
+									},3000);
+								}
+							});
+						}
+					}
+				});
+			}
+		});
+		
+		$('form.'+myform+' .btnSend').click(function(){
+			$('.'+myform).submit();
+		});
+	}
+</script>
+</body>
+</html> 

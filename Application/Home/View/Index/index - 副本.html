@@ -1,0 +1,123 @@
+<include file="Common:head"/>
+	<div id="box">
+<!-- Header starts -->
+<include file="Common:header"/>
+<!-- Header ends -->
+   <div class="banners">
+          <div class="containerwraper">
+             <img src="{:SITE_PATH}Public/Img/Index/banner.jpg" />
+             <div class="bannerswraper">
+                <div class="bannerbox">
+                       <img src="{:SITE_PATH}Public/Img/Index/bannerbg.png" />
+                       <div class="bannerlist" style="overflow:hidden;">
+                            <div class="banner"><img src="{:SITE_PATH}Public/Img/Index/banner-img.png" /></div>
+                            <div class="banner"><img src="{:SITE_PATH}Public/Img/Index/banner-img.png" /></div>
+                            <div class="banner"><img src="{:SITE_PATH}Public/Img/Index/banner-img.png" /></div>
+                            <div class="banner"><img src="{:SITE_PATH}Public/Img/Index/banner-img.png" /></div>
+                       </div>
+                </div>
+             </div>
+          </div>
+   </div>
+   
+<div id="homewraper" class="container">
+        <div class="containerwraper">
+             <div id="news">
+                 <div class="newswraper">
+                        <div class="newslist">
+                             <volist name="newslist" id="vo">
+                             <div class="news first">
+                                <div class="date">{$vo.date|date="Y-m-d",###}</div>
+                                <div class="title"><a href="javascript:void(0);"> {$vo.title}</a></div>
+                                <div class="text"> {$vo.content|html_entity_decode=###|strip_tags|mb_substr=###,"0","30","utf-8"}</div>
+                             </div>
+                              <if condition="$i lt 3"><div class="line"></div></if>
+                            </volist>
+                        </div>
+                 </div>
+                 <div class="more"><a href="{:U('News/index')}"><img src="{:SITE_PATH}Public/Img/Index/more.png" /></a></div>
+             </div>
+             <div id="works">
+                 <div class="head">
+                        <div class="title"><img src="{:SITE_PATH}Public/Img/Index/studentbg.png" /></div>
+                        <div class="more"><a href="{:U('Achievement/work')}"><img src="{:SITE_PATH}Public/Img/Index/more.png" /></a></div>
+                 </div>
+                  <div class="workslist">
+                       <volist name="student" id="vo">
+                         <div class="work">
+                              <div class="img"><a href="javascript:void(0);"><img src="{:SITE_PATH}Uploads/{$vo.pic}" width="173" /></a></div>
+                              <div class="name"><a href="javascript:void(0);">{$vo.name}</a></div>
+                              <div class="infor">{$vo.title|mb_substr=###,"0","50","utf-8"}</div>
+                         </div>
+                        </volist>
+                  </div>
+             </div>
+             
+             <div class="rightcolumn">
+                  <div id="award">
+                   <div class="awardslist">
+                           <div class="awardwraper">
+                                 <div class="title">第14屆 星星河 2014</div>
+                                 <div class="text">
+                                    <dl>
+                                      <dt>特等獎</dt><dt>徐碧彤</dt>	
+                                    </dl>
+                                    <dl>  
+									  <dt>一等獎 </dt><dt>鄧穎潼</dt>
+									</dl>
+                                    <dl>  
+									  <dt>二等獎 </dt><dt>鄺靜祈</dt>
+                                    </dl>
+                                 </div>
+                           </div>
+                           <div class="line"></div>
+                           <div class="awardwraper">
+                                 <div class="title">第14屆 星星河 2014</div>
+                                 <div class="text">
+                                    <dl>
+                                      <dt>特等獎</dt><dt>徐碧彤</dt>	
+                                    </dl>
+                                    <dl>  
+									  <dt>一等獎 </dt><dt>鄧穎潼</dt>
+									</dl>
+                                    <dl>
+									  <dt>二等獎 </dt><dt>鄺靜祈</dt>
+                                    </dl>
+                                 </div>
+                           </div>
+                   </div>
+                   <div class="more"><a href="javascript:void(0);"><img src="{:SITE_PATH}Public/Img/Index/more.png" /></a></div>
+                  </div>
+                  <div id="contact">
+                     <div class="title">兩點水工作室(九龍總校)</div>
+                     <div class="text">
+						<p>電話：2355 7700</p>
+						<p>電郵：vkids2001@gmail.com</p>
+						<p>地址：九龍界限街144號僑園sG座1樓</p>
+                     </div>
+                  </div>
+             </div>
+        </div>
+   </div>
+<!-- Footer starts -->
+<include file="Common:footer"/>
+<!-- Footer ends -->
+</div>
+<script src="{:SITE_PATH}Public/Js/jquery-1.8.2.min.js"></script>
+<script src="{:SITE_PATH}Public/Js/slick.js"></script>
+<script>
+   jQuery(function(){
+	   $('.bannerlist').slick({
+	        dots: true,
+	        autoplay:false,
+	        fade:true,
+	        arrows:false,
+	        onInit:function(){
+	        	jQuery('.bannerlist').removeAttr('style');
+	        }
+	    });
+   });
+   
+</scipt>
+</body>
+</html>
