@@ -115,10 +115,10 @@
                                   <div class="uploadphoto">
                                         <div class="close text-right"><a href="javascript:void(0);"><img src="Public/Img/close.png" /></a></div>
                                         <div class="uploadwraper">
-                                              <form>
+                                              <form id="form1" method="post" action="#" enctype="multipart/form-data">
                                               <div class="title">上載相片</div>
                                               <label>選擇圖片檔案</label>
-                                              <input type="file" id="pic" name="pic" />
+                                              <input id="fileupload" type="file" id="pic" name="pic" />
                                               <p>檔案不能超過5MB，僅支援 JPG或PNG 圖片檔<br/>相片在發布時尺寸可能會被調整。</p>
                                               <label>名稱</label>
                                               <input type="text" id="name" name="name" placeholder="請輸入你的名字"/>
@@ -127,14 +127,16 @@
                                                <label>電話</label>
                                               <input type="text" id="phone" name="phone" placeholder="請輸入你的聯絡電話"/>
                                               <label>相片名稱</label>
-                                              <input type="text" id="phone" name="phone" placeholder="請輸入你的相片主題"/>
+                                              <input type="text" id="title" name="title" placeholder="請輸入你的相片主題"/>
                                               <label>相片描述</label>
                                               <textarea id="infor" name="infor" placeholder="請輸入相片描述"></textarea>
                                               <label class="recept"><input type="checkbox" id="recept" name="recept" />&nbsp;我已閱讀及接受相關條款及細則</label>
                                               <div class="buttons text-center">
-                                                    <button type="submit" id="submit" name="submit" >提交</button>
+                                                    <button type="button" id="submit" name="submit" onclick="javascript:send_data()" >提交</button>
                                                     <button type="reset" id="reset" name="reset" >返回</button>
                                               </div>
+                                              <input type="hidden" id="type" name="type" value="projectphoto"/>
+                                              <input type="hidden" id="pid" name="pid" value="1"/>
                                               </form>
                                         </div>
                                   </div>
@@ -319,5 +321,27 @@
     	 });  */
      });
    </script>
+<script src="Public/Js/jquery.form.js"></script>
+<script>
+
+function send_data()
+{
+    $("#form1").ajaxSubmit({
+      url: 'admin.php/Admin/List/save',
+        dataType:  'json', //数据格式为json 
+        beforeSend: function() { //开始上传 
+        }, 
+        uploadProgress: function(event, position, total, percentComplete) { 
+        }, 
+        success: function(data) { //成功 
+          alert('發送成功, 謝謝!');
+          location.reload();
+        }, 
+        error:function(xhr){ //上传失败 
+          alert('發送失敗, 請重試');
+        } 
+    }); 
+}
+</script>
 </body>
 </html>
