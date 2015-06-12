@@ -10,6 +10,24 @@ class CommonController extends Controller {
               $this->redirect(U('Index/index'));
           }
       }
+      public function password(){
+          if(!$this->checkStatus()){
+              $this->error('Please login');
+          }else{
+              $this->display('changepassword');
+          }
+      }
+      public function changePassword(){
+          if(!$this->checkStatus()){
+              $this->error('Please login');
+          }else{
+              $this->success('Password changed!');
+          }
+          $map=array();
+          $map['status']=1;
+          $map['account']=$_SESSION['loginUserName'];
+          M('user')->where($map)->setField('password', md5($_POST['pwd']));
+      }
       public  function checkStatus(){
       	 $loginMarked=md5(C('AUTH_TOKEN'));
       	 
@@ -45,11 +63,11 @@ class CommonController extends Controller {
               $this->error('Please Input Account!');
           }else if(empty($_POST['password'])){
               $this->error('Please Input Password!');
-          }/*else if(empty($verify)){
+          }else if(empty($verify)){
               $this->error('Please Input Verify!');
           }else if(!$this->check_verify($verify)){
               $this->error('The Verify is not correct!');
-          }*/
+          }
           
           $map=array();
           $map['status']=1;
@@ -95,6 +113,7 @@ class CommonController extends Controller {
       	  		  'useNoise'    =>false, // 关闭验证码杂点
       	  		  );
           $Verify = new \Think\Verify($config);
+          ob_end_clean();
           $Verify->entry();
       }  
 }

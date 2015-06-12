@@ -119,6 +119,43 @@ class ListController extends BaseController{
         $this->assign('list',$list);
     }
 
+    public function savePic($src_img,$dst_w,$dst_h) {
+        list($src_w,$src_h)=getimagesize($src_img);   // 获取原图尺寸 
+
+        $dst_scale = $dst_h/$dst_w; //目标图像长宽比 
+        $src_scale = $src_h/$src_w; // 原图长宽比 
+
+        if($src_scale>=$dst_scale){   // 过高 
+            $w = intval($src_w); 
+            $h = intval($dst_scale*$w); 
+            $x = 0;
+            $y = ($src_h - $h)/3;
+        }
+        else{ // 过宽 
+            $h = intval($src_h); 
+            $w = intval($h/$dst_scale); 
+            $x = ($src_w - $w)/2; 
+            $y = 0; 
+        } 
+
+        // 剪裁 
+        $source=imagecreatefromjpeg($src_img); 
+        $croped=imagecreatetruecolor($w, $h); 
+        imagecopy($croped,$source,0,0,$x,$y,$src_w,$src_h); 
+
+        // 缩放 
+        $scale = $dst_w/$w; 
+        $target = imagecreatetruecolor($dst_w, $dst_h); 
+        $final_w = intval($w*$scale); 
+        $final_h = intval($h*$scale); 
+        imagecopysampled($target,$croped,0,0,0,0,$final_w,$final_h,$w,$h); 
+
+        // 保存 
+        $timestamp = time(); 
+        imagejpeg($target, "$timestamp.jpg"); 
+        imagedestroy($target);
+
+    }
     public function save(){
         $type=I('post.type');
         if(!in_array($type,array('banner','category','page','project','projectphoto')))$this->error('',U('Index/index'));
@@ -204,6 +241,21 @@ class ListController extends BaseController{
             $this->success('Action Success',$jump);
         }
     }
+    public function editStatus(){
+        $jump=cookie("__CURRENTURL__");
+        $db=D('projectphoto');
+        $poststatus = I('post.status');
+        $postid = I('post.id');
+        foreach ($postid as $id=>$val) {
+            if (isset ($poststatus[$id])) {
+                $db->where(array('id'=>$id))->setField ('status', 1);
+            }
+            else {
+                $db->where(array('id'=>$id))->setField ('status', 0);
+            }
+        }
+        $this->success('Action Success',$jump);
+    }
     private function changePic($DB,$model,$f,$file,$path){
         $file='./Uploads'.$file;
         switch ($model){
@@ -220,6 +272,16 @@ class ListController extends BaseController{
             break;
             case 'news':
                 $this->_thumb($file,$file,153,96);
+            break;
+            case 'projectphoto':
+                $path=$f['savepath'];
+                $basename=$f['savename'];
+                //$sfile=$path.'p_'.$basename;
+                $spic=$path.'s_'.$basename;
+                //$this->_thumb($file,$sfile,700,400);
+                $this->_thumb($file,'./Uploads'.$spic,174,115);
+                //$DB->pic=$sfile;
+                $DB->spic=$spic;
             break;
         }
     }

@@ -3,32 +3,116 @@ namespace Home\Controller;
 use Think\Controller;
 class IndexController extends BaseController {
     public function index(){
-        $bannerurls = M('banner')->where('sid >= 80001 AND sid < 90000')->getField('url',true);
-        $this->assign('refurl', $bannerurls);
-        $service = M('project')->query('SELECT p.id AS pid, p.title, p.description, p.preview, c.name AS category FROM gc_project p LEFT JOIN gc_catagory c ON p.cid=c.id');
-        for ($i=0;$i<count($service);$i++) {
-            if ($service[$i]['pid'] == '26') {
-                $service[$i]['preview'] = 'Public/Img/GC/service_pic1.jpg';
-                $b = $service[$i];
-                $service[$i] = $service[0];
-                $service[0] = $b;
-            }
-            else if ($service[$i]['pid'] == '28') {
-                $service[$i]['preview'] = 'Public/Img/GC/service_pic2.jpg';
-                $b = $service[$i];
-                $service[$i] = $service[1];
-                $service[1] = $b;
-            }
-            else if ($service[$i]['pid'] == '29') {
-                $service[$i]['preview'] = 'Public/Img/GC/service_pic3.jpg';
-                $b = $service[$i];
-                $service[$i] = $service[2];
-                $service[2] = $b;
-            }
-        }
-        $this->assign('service', $service);
+        $photos = M()->query ('SELECT pic,spic FROM p8_projectphoto WHERE status=1 ORDER BY RAND() ');
+        $this->assign('photos', $photos);
         $this->display();
     }
+
+    public function save(){
+        $type=I('post.type');
+        if(!in_array($type,array('banner','category','page','project','projectphoto')))$this->error('',U('Index/index'));
+        $tname=$type;
+        $jump=cookie("__CURRENTURL__");
+        $db=D($tname);
+        unset($_POST['pic']);
+        if(!$db->create()){
+            $this->error($db->getError(),$jump);
+        }else{
+            $id=I('post.id','');
+            foreach($_FILES as $key=>$file) {
+                if(empty($file['name'])) unset($_FILES[$key]);
+            }
+            if(count($_FILES)>0){
+                $path=date("Ymd");
+                $files=$this->_upload($tname,$path);
+                $pid=I('post.pid');
+                foreach($_FILES as $key=>$file) {
+                    //过滤无效的上传
+                    if(!empty($file['name'])) {
+                        foreach($files as $k=>$f){
+                            $filename=$f['savepath'].$f['savename'];
+                            $typename=$f['key'];
+                            if($typename=='pic')$this->changePic($db, $tname, $f,$filename,$path);
+                            $db->$typename=$f['savepath'].$f['savename'];
+                        }
+                    }
+            
+                }
+            }
+            $fields=$db->getDbFields();
+            $date=I('post.date');
+            if(in_array('date',$fields)){
+                if(empty($date))$db->date=date('Y-m-d');
+                else $db->date=$date;
+            }
+            if(!empty($id)){
+                $query=$db->save();
+            }else{
+                $query=$db->add();
+                $id = $query;
+            }
+        }
+    }
+    private function changePic($DB,$model,$f,$file,$path){
+        $file='./Uploads'.$file;
+        switch ($model){
+            case 'courselist':
+                $path=$f['savepath'];
+                $basename=$f['savename'];
+                $spic=$path.'s_'.$basename;
+                $this->_thumb($file,$file,656,367);
+                $this->_thumb($file,$spic,210,123);
+                $DB->spic=$spic;
+                break;
+            case 'tutorslist':
+                $this->_thumb($file,$file,80,100);
+            break;
+            case 'news':
+                $this->_thumb($file,$file,153,96);
+            break;
+            case 'projectphoto':
+                $path=$f['savepath'];
+                $basename=$f['savename'];
+                //$sfile=$path.'p_'.$basename;
+                $spic=$path.'s_'.$basename;
+                //$this->_thumb($file,$sfile,700,400);
+                $this->_thumb($file,'./Uploads'.$spic,174,115);
+                //$DB->pic=$sfile;
+                $DB->spic=$spic;
+            break;
+        }
+    }
+    protected function _thumb($file,$imgname,$width,$height){
+        $image=new \Think\Image();
+        if(!empty($file)){
+            $image->open($file);
+            $image->thumb($width, $height,3);
+            $image->save($imgname);
+        }
+    }
+
+      public function verify(){
+      	  $config =    array(   
+      	  		  'imageW'=>100,    // 验证码字体大小   
+      	  		  'imageH'=>30,
+      	  		  'length'=>4,     // 验证码位数   \
+      	  		  'useCurve'=>false,
+      	  		  'fontSize'=>14,
+      	  		  'useNoise'    =>false, // 关闭验证码杂点
+      	  		  );
+          $Verify = new \Think\Verify($config);
+          ob_end_clean();
+          $Verify->entry();
+      }  
+     public function check_verify(){   
+      	$verify = new \Think\Verify();  
+      	  if( $verify->check($_GET['code'])) {
+              echo 'success';
+          }
+          else {
+              echo '验证码错误';
+          }
+      }
 
     // SQL execution 
     /*public function sql() {

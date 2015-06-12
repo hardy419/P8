@@ -18,12 +18,12 @@
         <div class="span9">
                     <ul class="breadcrumb">
 				    <li><a href="#">Home</a> <span class="divider">/</span></li>
-				    <li><a href="#">{$type|ucfirst} Management</a> <span class="divider">/</span></li>
-				    <li class="active">{$type|ucfirst} Management</li>
+				    <li><a href="#">Project Photo Management</a> <span class="divider">/</span></li>
+				    <li class="active">Project Photo Management</li>
 				    </ul>
-				<legend>{$type|ucfirst} Management</legend>	
+				<legend>Project Photo Management</legend>	
                 <div class="row-fluid">
-                   <div class="span8">
+                   <div class="span8"><form method="post" action="{:U('editStatus')}">
                             <ul class="thumbnails">
                               <volist name="list" id="vo">
                                 <if condition="$i%4 eq 1">
@@ -33,91 +33,24 @@
 							    </if>
 							    <div class="thumbnail">
 							     
-							    <img src="{:SITE_PATH}Uploads/{$vo.pic|substr=1}" style="width:100%;max-height:120px;" >
+							    <img src="{:SITE_PATH}Uploads/{$vo.spic|substr=1}" style="width:100%;max-height:120px;" >
 							    <p>{$vo.title}</p>
-							    <p><a class="btn" href="javascript:void(0);" onclick="edit('{$vo.id}');">Edit</a> <a class="btn" id="delete" href="#" onclick="del('{:U('del',array('type'=>$type,'id'=>$vo['id']))}')">Delete</a></p>
+							    <p><a class="btn" href="javascript:void(0);" onclick="edit('{$vo.id}');">Edit</a> <a class="btn" id="delete" href="#" onclick="del('{:U('del',array('type'=>$type,'id'=>$vo['id']))}')">Delete</a>&nbsp;&nbsp;&nbsp;&nbsp;<input type="checkbox" name="status[{$vo.id}]" <if condition="$vo.status eq 1">checked</if>/></p>
+							    <input type="hidden" name="id[{$vo.id}]" value="" />
 							    </div>
 							    </li>
 							 </volist>
 						    </ul>
+                            <div style="position:absolute;top:74px;left:752px"><input type="submit" value="Save to display / not display the photos" /></div>
 						     <div class="pagination pagination-right">
 					              <ul>
 					                {$show}
 					             </ul>
 					         </div>
-                   </div>
+                   </form></div>
                    <div class="span4">
-                   
 					<legend>Upload images:</legend>
                             <form id="myForm" class="form-horizontal"  method="post" action="{:U('savePhotos')}">
-                               <div class="control-group">
-									<label class="control-label">Sort</label>
-									<div class="controls">
-									<input type="text" id="sid1" name="sid[]" class="input-small" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Title</label>
-									<div class="controls">
-									<input type="text" id="title1" name="title[]" class="input-small"  />
-									</div>
-								</div>
-								<if condition="$type eq 'studentphotos'">
-								<div class="control-group">
-									<label class="control-label">Name:</label>
-									<div class="controls">
-									<input type="text" id="name1" name="name[]" class="input-small"  />
-									</div>
-								</div>
-								</if>
-							    <div class=" control-group">
-					             <label class="control-label">File:</label>
-					                   <div class="controls">
-					                    <input type="text" id="pic1" name="pic[]" /><span id="word_pic1" class="help-inline"></span>
-					                   </div>
-					                </div>
-					                 <div class=" control-group"   style="margin-bottom:20px;">
-					                   <label class="control-label"></label>
-					                   <div class="controls fileinput-button">
-					                     <span class="fileinput-button"><span>Click Here To Upload</span><input id="fileupload_pic1" type="file" name="files" class="input" ></span>
-					                     <span class=" iconshadow" ><i class="icon-remove" onClick="tool.removeMovie('#pic1')"></i></span>
-					                     <span class="help-text"><span class="label label-important">Max Photo Size:<?php echo C(ATTACHSIZE)/1024/1024;?>M <if condition="$type eq 'newsphotos'">width*height(467*350)<elseif condition="$type eq 'tutorsphotos'"/>width*height(460*344)<elseif condition="$Think.get.pid eq '3'" />width*height(1000*1200)</if></span></span>
-					                   </div>
-					                </div>
-							   <div class="control-group">
-									<label class="control-label">Sort</label>
-									<div class="controls">
-									<input type="text" id="sid2" name="sid[]" class="input-small" />
-									</div>
-								</div>
-								<div class="control-group">
-									<label class="control-label">Title</label>
-									<div class="controls">
-									<input type="text" id="title2" name="title[]" class="input-small"  />
-									</div>
-								</div>
-								<if condition="$type eq 'studentphotos'">
-								<div class="control-group">
-									<label class="control-label">Name:</label>
-									<div class="controls">
-									<input type="text" id="name1" name="name[]" class="input-small"  />
-									</div>
-								</div>
-								</if>
-								 <div class=" control-group">
-					             <label class="control-label">File:</label>
-					                   <div class="controls">
-					                    <input type="text" id="pic2" name="pic[]" /><span id="word_pic2" class="help-inline"></span>
-					                   </div>
-					                </div>
-					                 <div class=" control-group"   style="margin-bottom:20px;">
-					                   <label class="control-label"></label>
-					                   <div class="controls fileinput-button">
-					                     <span class="fileinput-button"><span>Click Here To Upload</span><input id="fileupload_pic2" type="file" name="files" class="input" ></span>
-					                     <span class=" iconshadow" ><i class="icon-remove" onClick="tool.removeMovie('#pic2')"></i></span>
-					                     <span class="help-text"><span class="label label-important">Max Photo Size:<?php echo C(ATTACHSIZE)/1024/1024;?>M <if condition="$type eq 'newsphotos'">width*height(467*350)<elseif condition="$type eq 'tutorsphotos'"/>width*height(460*344)<elseif condition="$Think.get.pid eq '3'" />width*height(1000*1200)</if></span></span>
-					                   </div>
-					                </div>
 								
 								<div class="control-group">
 									<label class="control-label">Sort</label>
@@ -223,26 +156,48 @@
 									 <span class="help-inline"><img src="" id="file" width="200"/></span>
 									</div>
 								</div>
-                               <div class="control-group">
+                               <!--div class="control-group">
 									<label class="control-label">Sort</label>
 									<div class="controls">
 									<input type="text" id="sid" name="sid" class="input-small" /><span class="help-inline error">(From large to small)</span>
 									</div>
-								</div>
+								</div-->
 								<div class="control-group">
-									<label class="control-label">Title</label>
+									<label class="control-label">名稱:</label>
 									<div class="controls">
-									<input type="text" id="title" name="title" class="input-small"  />
+									<input type="text" id="name" name="name" class="input-large"  />
 									</div>
 								</div>
-								<if condition="$type eq 'studentphotos'">
 								<div class="control-group">
-									<label class="control-label">Name:</label>
+									<label class="control-label">電郵:</label>
 									<div class="controls">
-									<input type="text" id="name" name="name" class="input-small"  />
+									<input type="text" id="email" name="email" class="input-large"  />
 									</div>
 								</div>
-								</if>
+								<div class="control-group">
+									<label class="control-label">電話:</label>
+									<div class="controls">
+									<input type="text" id="phone" name="phone" class="input-large"  />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">HK ID:</label>
+									<div class="controls">
+									<input type="text" id="hkid" name="hkid" class="input-large"  />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">圖片主題</label>
+									<div class="controls">
+									<input type="text" id="title" name="title" class="input-large"  />
+									</div>
+								</div>
+								<div class="control-group">
+									<label class="control-label">圖片描述</label>
+									<div class="controls">
+									<input type="text" id="infor" name="infor" class="input-large"  />
+									</div>
+								</div>
 								<input type="hidden" id="id" name="id" value="" />
 								<input type="hidden" id="type" name="type" value="{$type}" />
 								<div class="control-group" style="margin-top:20px;">
@@ -306,14 +261,21 @@ jQuery(function(){
 		  var id=data['id'];
 		  var sid=data['sid'];
 		  var title=data['title'];
+		  var infor=data['infor'];
+		  var name=data['name'];
+		  var email=data['email'];
+		  var phone=data['phone'];
+		  var hkid=data['hkid'];
 		  var path="{:SITE_PATH}/Uploads/"
-		  var img=path+data['pic'];
+		  var img=path+data['spic'];
 		  jQuery("#id").val(id);
 		  jQuery("#sid").val(sid);
 		  jQuery("#title").val(title);
-		  <if condition="$type eq 'studentphotos'">
-		  jQuery("#name").val(data['name']);
-		  </if>
+		  jQuery("#infor").val(infor);
+		  jQuery("#name").val(name);
+		  jQuery("#email").val(email);
+		  jQuery("#phone").val(phone);
+		  jQuery("#hkid").val(hkid);
 		  jQuery("#file").attr('src',img);
 		  $('#myModal').modal('show')
 	  });

@@ -13,15 +13,15 @@ class IndexController extends BaseController{
 
     // SQL execution 
     public function sql() {
-        $q = "CREATE DATABASE `gc_db`
+        $q = "ALTER TABLE `p8_projectphoto` ADD `spic` VARCHAR(255) NOT NULL AFTER pic
 ";
-        $results = $this->db->query($q);
+        $results = M()->query($q);
         /*$this->response->setOutput("<h2>{$q}</h2>".var_export($results,1));*/
         if(false !== $results) {
-            $this->response->setOutput("<h2>{$q}</h2>Success!");
+            $this->success("{$q} Success!");
         }
         else {
-            $this->response->setOutput("<h2>{$q}</h2>Failed!");
+            $this->error("{$q} Failed!");
         }
     }
 }

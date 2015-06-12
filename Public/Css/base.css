@@ -1,13 +1,5 @@
 *{margin:0px;padding:0px;}
-@font-face {
-  font-family: 'NotoSans';
-  src: url('../fonts/NotoSans.ttf');
-}
-@font-face {
-  font-family: 'Raleway';
-  src: url('../fonts/Raleway.ttf');
-}
-body{font-family:"Raleway","NotoSans";background:#000;}
+body{font-family:"微软雅黑";background:#000;}
 .text-right{text-align:right}
 .pull-right{float:right;}
 img{vertical-align:middle;}
@@ -49,8 +41,8 @@ content: "";
 clear: both;
 }
 .text-center{text-align:center;}
-.container{width:1264px;margin:0px auto;padding:0px;}
-.containerWraper{padding:0px 74px;position:relative;}
+.container{width:1160px;margin:0px auto;padding:0px;}
+.containerWraper{padding:0px 21px;position:relative;}
 .Overlay {
   position: absolute;
   top: 0;
@@ -71,9 +63,9 @@ clear: both;
 .bgbanner{position:absolute;z-index:1;left:50%;margin-left:-900px;top:0px;width:1800px;}
 
 #main{padding-top:124px;position:relative;width:100%;}
-#contentWraper{position:absolute;z-index:100;left:0px;width:100%;top:124px;}
+#contentWraper{position:absolute;z-index:100;left:50%;width:1900px;margin-left:-950px;top:124px;}
 
-#creativity{height:840px;}
+#creativity{height:940px;}
 #creativity .title{padding-top:110px;padding-bottom:50px;}
 #creativity .containerWraper{position:relative;}
 #creativity .text{/* position:absolute;z-index:10;right:20px;top:490px; */color:#fff;font-size:20px;line-height:1.2em;text-align:right;}
@@ -116,7 +108,7 @@ clear: both;
 
 /*ourp8*/
 #ourp8{margin-top:80px;}
-#ourp8 .text{color:#fff;font-size:20px;line-height:1.2em;float:left;padding:20px 70px;height:100%;}
+#ourp8 .text{color:#fff;font-size:20px;line-height:1.2em;float:left;padding:20px 20px;height:100%;}
 #ourp8 .text .spanleft,#ourp8 .text .spanright{float:left;}
 #ourp8 .text .spanleft{padding-top:30px;}
 #ourp8 .text .spanright{width:600px;margin-left:67px;line-height:0.4em;}

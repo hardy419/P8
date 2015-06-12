@@ -38,5 +38,25 @@ class BaseController extends Controller {
       	 return true;
     }
 	
+	public function _upload($module,$cpath,$thumb,$width,$height){
+		$module=$module=""?'file':$module;//¦Ä???ýq????file?????
+		$path='/'.$module.'/';
+		if (!is_dir($path))	mkdir($path,0755,true);
+	
+		
+		$upload = new \Think\Upload();
+		$upload->maxSize=C(ATTACHSIZE);
+		$upload->exts=explode(',',C(ATTACHEXT));
+		$upload->savePath=$path;
+		$upload->autoSub  = true;
+		$upload->subName  =$cpath;
+		$upload->saveName = array('uniqid','');
+		$info=$upload->upload();
+		if(!$info){
+			return $this->error($upload->getError());
+		}else{
+			return $info;
+		}
+	}
 }
 ?>

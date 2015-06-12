@@ -74,12 +74,14 @@ CREATE TABLE IF NOT EXISTS `p8_projectphoto` (
   `id` int(11) NOT NULL AUTO_INCREMENT,
   `title` varchar(255) NOT NULL,
   `pic` varchar(255) NOT NULL,
+  `spic` varchar(255) NOT NULL,
+  `hkid` varchar(10) NOT NULL,
   `infor` varchar(255) NOT NULL,
   `phone` varchar(32) NOT NULL,
   `email` varchar(255) NOT NULL,
   `name` varchar(64) NOT NULL,
   `sid` int(11) NOT NULL,
-  `status` tinyint(1) NOT NULL DEFAULT '1',
+  `status` tinyint(1) NOT NULL DEFAULT '0',
   `pid` int(11) NOT NULL,
   PRIMARY KEY (`id`)
 ) ENGINE=InnoDB  DEFAULT CHARSET=utf8 AUTO_INCREMENT=1 ;
